@@ -4,9 +4,14 @@ import "./Cards.css";
 
 export function Cards() {
   return (
+    // Padding of the page contents 
     <div className="cards">
+      <h1>Explore your next destination!</h1>
+      {/* structure of the cards that are being displayed */}
       <div className="cards__container">
         <div className="cards__wrapper">
+
+          {/* Creates a card row wit hthe "cards__items" class */}
           <ul className="cards__items">
             <CardItem
               src="images/img-9.jpg"
@@ -21,6 +26,7 @@ export function Cards() {
               path="/services"
             />
           </ul>
+
           <ul className="cards__items">
             <CardItem
               src="images/img-3.jpg"
