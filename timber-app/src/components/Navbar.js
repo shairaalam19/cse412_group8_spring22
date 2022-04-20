@@ -49,12 +49,12 @@ return (
             </Link>
           </li>
           <li className='nav-item'>
-            <Link to='/Map' className='nav-links' onClick={closeMobileMenu}>
+            <Link to='/map' className='nav-links' onClick={closeMobileMenu}>
               Map
             </Link>
           </li>
           <li className='nav-item'>
-            <Link to='/Destination' className='nav-links' onClick={closeMobileMenu}>
+            <Link to='/destination' className='nav-links' onClick={closeMobileMenu}>
               Destination
             </Link>
           </li>

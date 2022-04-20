@@ -6,6 +6,7 @@ import Navbar from './components/Navbar';
 import {Home} from './components/pages/Home';
 import {Destination} from './components/pages/Destination';
 import {Map} from './components/pages/Map';
+import {Sign_up} from './components/pages/Sign-up';
 
 function App() {
   return (
@@ -14,8 +15,9 @@ function App() {
         <Navbar />
         <Routes>
           <Route path='/' element={<Home/>} />
-          <Route path='/Destination' element={<Destination/>} />
-          <Route path='/Map' element={<Map/>} />
+          <Route path='/destination' element={<Destination/>} />
+          <Route path='/map' element={<Map/>} />
+          <Route path='/sign-up' element={<Sign_up/>} />
         </Routes>
       </Router>
     </>
