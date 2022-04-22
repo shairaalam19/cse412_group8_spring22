@@ -96,6 +96,8 @@ app.delete("/api/hikers/:id", async (req, res) => {
 });
 
 // ________________________________________  Destination routes ___________________________________________________
+// Use : http://localhost:5000/api/destinations
+
 //get all destinations from database
 app.get("/api/destinations", async (req, res) => {
     try {
@@ -140,8 +142,54 @@ app.delete("/api/destinations/:name", async (req, res) => { //TIP: URLS do not c
     }
 });
 
+// ________________________________________  Favorites routes ___________________________________________________
+// Use : http://localhost:5000/api/favorites
 
+//get favorite destination(s) of a user based on user ID
+app.get("/api/favorites/:id", async (req, res) => {
+    try {
+        const result = await pool.query("SELECT favorites.destination_name FROM favorites WHERE favorites.hiker_userid = $1", [req.params.id]);
+                res.status(200).json({
+            status:"success",
+            results: result.rows.length, //get total number of favorite destination
+            data: {
+                favorites: result.rows,
+            },
+        });
+    }
+    catch (err) {
+        console.error(err.message);
+    }
+});
 
+//Add one new favorite destination under user id (both id and destination MUST exist to add to this table)
+app.post("/api/favorites/", async (req, res) => {
+    console.log(req.body);
+    try {
+        const result = await pool.query("INSERT INTO favorites(hiker_userid, destination_name) values($1, $2) RETURNING *", [req.body.hiker_userid, req.body.destination_name]);
+        res.status(200).json({
+            status:"success",
+            data: {
+                favorite: result.rows[0],
+             },
+         });
+    } catch (err) {
+        console.error(err.message);
+    }
+});
+
+//delete favorite destination from user
+// app.delete("/api/destinations/:id/:dest", async (req, res) => {
+//     try { //sample query: DELETE from favorites WHERE destination_name='Grand Canyon' AND hiker_userid=99;
+//         const result = await pool.query("DELETE FROM favorites WHERE destination_name = $1 AND hiker_userid= $2", [req.params.id, req.params.dest]);
+//         res.status(200).json({
+//             status:"successfully deleted"
+//         });
+//     }
+//     catch (err) {
+//         console.error(err.message);
+//     }
+// });
 
 
 
