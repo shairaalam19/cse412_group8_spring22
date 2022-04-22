@@ -25,12 +25,10 @@ app.use(express.json());
 app.get("/api/hikers", async (req, res) => {
     try {
         const result = await pool.query("SELECT * FROM hiker");
-                res.status(200).json({
+        res.status(200).json({
             status:"success",
-            results: result.rows.length, //get total number of results
-            data: {
-                hikers: result.rows,
-            },
+            size: result.rows.length, //total aray size
+            hikers: result.rows,
         });
     }
     catch (err) {
@@ -43,9 +41,7 @@ app.get("/api/hikers/:id", async (req, res) => {
         const result = await pool.query("SELECT * FROM hiker WHERE hiker_userid = $1", [req.params.id]); //TIP: ALWAYS USE THIS STRING FORMAT. NEVER USE STRING CONCATENATION OF ANY KIND.
         res.status(200).json({
             status:"success",
-            data: {
-                hiker: result.rows[0],
-            },
+            hiker: result.rows[0]
         });
     }
     catch (err) {
@@ -54,14 +50,11 @@ app.get("/api/hikers/:id", async (req, res) => {
 });
 //add one new hiker to the database
 app.post("/api/hikers", async (req, res) => {
-    console.log(req.body);
     try { //TIP: returning * = returns entire hiker object
         const result = await pool.query("INSERT INTO hiker(hiker_userid, hiker_username, hiker_password, hiker_state) VALUES($1, $2, $3, $4) RETURNING *", [req.body.hiker_userid, req.body.hiker_username, req.body.hiker_password, req.body.hiker_state]);
         res.status(200).json({
             status:"success",
-            data: {
-                hiker: result.rows[0],
-             },
+            hiker: result.rows[0],
          });
     } catch (err) {
         console.error(err.message);
@@ -69,14 +62,11 @@ app.post("/api/hikers", async (req, res) => {
 });
 //update hiker's state based on id
 app.put("/api/hikers/state/:id", async (req, res) => {
-    console.log(req.body);
     try {
         const result = await pool.query("UPDATE hiker SET hiker_state = $1 WHERE hiker_userid = $2 RETURNING *", [req.body.hiker_state, req.params.id]);
         res.status(200).json({
             status:"success",
-            data: {
-                hiker: result.rows[0],
-             },
+            hiker: result.rows[0],
          });
     } catch (err) {
         console.error(err.message);
@@ -104,10 +94,8 @@ app.get("/api/destinations", async (req, res) => {
         const result = await pool.query("SELECT * FROM destination");
                 res.status(200).json({
             status:"success",
-            results: result.rows.length, //get total number of results
-            data: {
-                destinations: result.rows,
-            },
+            size: result.rows.length, //total array size
+            destinations: result.rows,
         });
     }
     catch (err) {
@@ -116,14 +104,11 @@ app.get("/api/destinations", async (req, res) => {
 });
 //add one new destination to the database
 app.post("/api/destinations", async (req, res) => {
-    console.log(req.body);
     try {
         const result = await pool.query("INSERT INTO destination(destination_name) VALUES($1) RETURNING *", [req.body.destination_name]);
         res.status(200).json({
             status:"success",
-            data: {
-                destination: result.rows[0],
-             },
+            destination: result.rows[0]
          });
     } catch (err) {
         console.error(err.message);
@@ -151,10 +136,8 @@ app.get("/api/favorites/:id", async (req, res) => {
         const result = await pool.query("SELECT favorites.destination_name FROM favorites WHERE favorites.hiker_userid = $1", [req.params.id]);
                 res.status(200).json({
             status:"success",
-            results: result.rows.length, //get total number of favorite destination
-            data: {
-                favorites: result.rows,
-            },
+            size: result.rows.length, //total array size
+            favorites: result.rows,
         });
     }
     catch (err) {
@@ -164,14 +147,11 @@ app.get("/api/favorites/:id", async (req, res) => {
 
 //Add one new favorite destination under user id (both id and destination MUST exist to add to this table)
 app.post("/api/favorites/", async (req, res) => {
-    console.log(req.body);
     try {
         const result = await pool.query("INSERT INTO favorites(hiker_userid, destination_name) values($1, $2) RETURNING *", [req.body.hiker_userid, req.body.destination_name]);
         res.status(200).json({
             status:"success",
-            data: {
-                favorite: result.rows[0],
-             },
+            favorite: result.rows[0],
          });
     } catch (err) {
         console.error(err.message);
