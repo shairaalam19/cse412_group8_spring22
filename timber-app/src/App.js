@@ -7,6 +7,8 @@ import {Home} from './components/pages/Home';
 import {Destination} from './components/pages/Destination';
 import {Map} from './components/pages/Map';
 import {Sign_up} from './components/pages/Sign-up';
+import {User} from './components/pages/User';
+
 
 function App() {
   return (
@@ -17,6 +19,7 @@ function App() {
           <Route path='/' element={<Home/>} />
           <Route path='/destination' element={<Destination/>} />
           <Route path='/map' element={<Map/>} />
+          <Route path='/user' element={<User/>} />
           <Route path='/sign-up' element={<Sign_up/>} />
         </Routes>
       </Router>
