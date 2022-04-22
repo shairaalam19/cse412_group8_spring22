@@ -43,7 +43,12 @@
     overflow: hidden;
     text-decoration: none;
   }
-  
+
+  .cards__item__button{
+    align-items:center;
+    justify-content: center;
+    display:inline-block;
+  }  
   .cards__item__pic-wrap {
     position: relative;
     width: 100%;

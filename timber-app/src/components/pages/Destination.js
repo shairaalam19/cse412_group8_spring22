@@ -1,13 +1,13 @@
 import React from 'react';
 import '../../App.css';
 import { HeroSection } from '../HeroSection';
-import { Cards } from '../Cards';
+import { Destination_Cards } from '../Destination_Cards';
 
 export function Destination() {
   return (
     <>
       {/* <HeroSection /> */}
-      <Cards/>
+      <Destination_Cards/>
     </>
   );
 }

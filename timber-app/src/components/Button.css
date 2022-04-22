@@ -10,6 +10,27 @@
     cursor: pointer;
 }
 
+.btn--like{
+    color: #fff;
+    padding: 8px 20px;
+    border-radius: 2px;
+    outline: none;
+    border: 2px solid rgba(124, 159, 136, 0.574);
+    cursor: pointer;
+    width: 100px;
+    background-color: rgba(39, 196, 94, 0.718);
+}
+
+.btn--notLike{
+    padding: 8px 20px;
+    border-radius: 2px;
+    outline: none;
+    border: 2px solid #a3a3a36e;
+    cursor: pointer;
+    width: 100px;
+    background-color: #fff;
+}
+
 .btn--primary{
     background-color: var(--primary);
     color: #242424;

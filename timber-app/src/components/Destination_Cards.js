@@ -1,8 +1,11 @@
 import React from "react";
 import CardItem from "./CardItem";
 import "./Cards.css";
+import {Button} from './Button';
 
-export function Cards() {
+
+
+export function Destination_Cards() {
   return (
     // Padding of the page contents 
     <div className="cards">
@@ -18,12 +21,16 @@ export function Cards() {
               text="Explore the hidden waterfall deep inside the Amazon Jungle"
               label="Adventure"
               path="/services"
+              destination="Amazon Jungle"
             />
+          </ul>
+          <ul className="cards__items">
             <CardItem
               src="images/img-2.jpg"
               text="Travel through the islands of Bali in a private cruise"
               label="Luxury"
               path="/services"
+              destination="Bali"
             />
           </ul>
 
@@ -33,18 +40,25 @@ export function Cards() {
               text="Set sail in the Atlantic Ocean visiting uncharted waters"
               label="Mystery"
               path="/services"
+              destination="Atlantic Ocean"
             />
+          </ul>
+          <ul className="cards__items">
             <CardItem
               src="images/img-4.jpg"
               text="Experience football at the top of the Himilayan Mountains"
               label="Adventure"
               path="/sign-up"
+              destination="Himilayan Mountains"
             />
+          </ul>
+          <ul className="cards__items">
             <CardItem
               src="images/img-8.jpg"
               text="Ride through the Sahara Desert on a guided camel tour"
               label="Adrenaline"
               path="/sign-up"
+              destination="Sahara Desert"
             />
           </ul>
         </div>
@@ -53,4 +67,4 @@ export function Cards() {
   );
 }
 
-export default Cards;
+export default Destination_Cards;
