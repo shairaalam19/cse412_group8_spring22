@@ -13,6 +13,8 @@ export function Destination() {
         try{
           const response = await DestinationAPI.get("/");
           
+          //================== Different ways to retrieve data =====================
+          
           //get entire response
           console.log(response);
           //get total number of destination results
@@ -21,13 +23,14 @@ export function Destination() {
           for(let i = 0; i < response.data.size; i++){
             console.log("destination at " + i + ": " + response.data.destinations[i].destination_name);
           }
+          //========================================================================
 
         }catch(err){
           console.log(err);
         }
       }//end of fetch data
       fetchData();
-    }, []); //empty dependency, runs only once
+    },[]) //empty dependency, runs only once
 
   return (
     <>
