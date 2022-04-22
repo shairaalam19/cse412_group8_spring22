@@ -8,7 +8,7 @@ const pool = require("./db"); //local postgres database (see db.js for configura
 const port = process.env.PORT || 5000;
 
 app.listen(port, () => { //server listens on this port
-    console.log(`server has started on port ${port}`);
+    console.log("server has started on port " + port);
 });
 
 //MIDDLEWARE (function that handles request from client before giving to route handler)
@@ -24,20 +24,30 @@ app.use(express.json());
 //get all hikers
 app.get("/api/hikers", async (req, res) => {
     try {
-        const allhikers = await pool.query("SELECT * FROM hiker");
-        res.json(allhikers.rows); //send response in a json format to client
+        const result = await pool.query("SELECT * FROM hiker");
+                res.status(200).json({
+            status:"success",
+            results: result.rows.length, //get total number of results
+            data: {
+                hikers: result.rows,
+            },
+        });
     }
     catch (err) {
         console.error(err.message);
     }
 });
 
-//get one hiker
+//get one hiker based on ID
 app.get("/api/hikers/:id", async (req, res) => {
     try {
-        const { id } = req.params;
-        const hiker = await pool.query(`SELECT * FROM hiker WHERE hiker_userid = ${id}`);
-        res.json(hiker.rows[0]);
+        const result = await pool.query("SELECT * FROM hiker WHERE hiker_userid = $1", [req.params.id]); //TIP: ALWAYS USE THIS STRING FORMAT. NEVER USE STRING CONCATENATION OF ANY KIND.
+        res.status(200).json({
+            status:"success",
+            data: {
+                hiker: result.rows[0],
+            },
+        });
     }
     catch (err) {
         console.error(err.message);
@@ -46,14 +56,45 @@ app.get("/api/hikers/:id", async (req, res) => {
 
 //add one new hiker to the database
 app.post("/api/hikers", async (req, res) => {
-    try {
-        //use queries here
-        console.log(req.body);
-        const { hiker_userid, hiker_username, hiker_password, hiker_state } = req.body;
-        const newhiker = await pool.query("INSERT INTO hiker(hiker_userid, hiker_username, hiker_password, hiker_state) VALUES($1, $2, $3, $4) RETURNING *", [hiker_userid, hiker_username, hiker_password, hiker_state]);
-        res.json(newhiker.rows[0]);
-
+    console.log(req.body);
+    try { //TIP: returning * = returns entire hiker object
+        const result = await pool.query("INSERT INTO hiker(hiker_userid, hiker_username, hiker_password, hiker_state) VALUES($1, $2, $3, $4) RETURNING *", [req.body.hiker_userid, req.body.hiker_username, req.body.hiker_password, req.body.hiker_state]);
+        res.status(200).json({
+            status:"success",
+            data: {
+                hiker: result.rows[0],
+             },
+         });
     } catch (err) {
+        console.error(err.message);
+    }
+});
+
+//update hiker's state based on id
+app.put("/api/hikers/state/:id", async (req, res) => {
+    console.log(req.body);
+    try {
+        const result = await pool.query("UPDATE hiker SET hiker_state = $1 WHERE hiker_userid = $2 RETURNING *", [req.body.hiker_state, req.params.id]);
+        res.status(200).json({
+            status:"success",
+            data: {
+                hiker: result.rows[0],
+             },
+         });
+    } catch (err) {
+        console.error(err.message);
+    }
+});
+
+//delete a hiker
+app.delete("/api/hikers/:id", async (req, res) => {
+    try {
+        const result = await pool.query("DELETE FROM hiker WHERE hiker_userid = $1", [req.params.id]);
+        res.status(200).json({
+            status:"successfully deleted"
+        });
+    }
+    catch (err) {
         console.error(err.message);
     }
 });
