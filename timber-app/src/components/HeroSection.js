@@ -14,16 +14,18 @@ export function HeroSection() {
           className='btns'
           buttonStyle='btn--outline'
           buttonSize='btn--large'
+          path='/sign-up'
         >
-          GET STARTED
+          SIGN UP
         </Button>
         <Button
           className='btns'
           buttonStyle='btn--primary'
           buttonSize='btn--large'
+          path='/destination'
           // onClick={console.log('hey')}
         >
-          WATCH TRAILER <i className='far fa-play-circle' />
+          SEE DESTINATIONS <i className='far fa-play-circle' />
         </Button>
       </div>
     </div>
