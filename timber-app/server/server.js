@@ -18,7 +18,7 @@ app.use(express.json());
 //EXPRESS ROUTES / CRUD OPERATIONS
 //req = request from client, res = response to client
 
-// ________________________________________  Hikers operations (select, insert) ___________________________________________________
+// ________________________________________  Hiker routes  ___________________________________________________
 // Use : http://localhost:5000/api/hikers
 
 //get all hikers
@@ -37,7 +37,6 @@ app.get("/api/hikers", async (req, res) => {
         console.error(err.message);
     }
 });
-
 //get one hiker based on ID
 app.get("/api/hikers/:id", async (req, res) => {
     try {
@@ -53,7 +52,6 @@ app.get("/api/hikers/:id", async (req, res) => {
         console.error(err.message);
     }
 });
-
 //add one new hiker to the database
 app.post("/api/hikers", async (req, res) => {
     console.log(req.body);
@@ -69,7 +67,6 @@ app.post("/api/hikers", async (req, res) => {
         console.error(err.message);
     }
 });
-
 //update hiker's state based on id
 app.put("/api/hikers/state/:id", async (req, res) => {
     console.log(req.body);
@@ -85,7 +82,6 @@ app.put("/api/hikers/state/:id", async (req, res) => {
         console.error(err.message);
     }
 });
-
 //delete a hiker
 app.delete("/api/hikers/:id", async (req, res) => {
     try {
@@ -99,20 +95,50 @@ app.delete("/api/hikers/:id", async (req, res) => {
     }
 });
 
-// ________________________________________  Destination operations ___________________________________________________
+// ________________________________________  Destination routes ___________________________________________________
 //get all destinations from database
 app.get("/api/destinations", async (req, res) => {
     try {
-        const alldestination = await pool.query("SELECT * FROM destination");
-        res.json(alldestination.rows);
+        const result = await pool.query("SELECT * FROM destination");
+                res.status(200).json({
+            status:"success",
+            results: result.rows.length, //get total number of results
+            data: {
+                destinations: result.rows,
+            },
+        });
     }
     catch (err) {
         console.error(err.message);
     }
 });
-
-
-
+//add one new destination to the database
+app.post("/api/destinations", async (req, res) => {
+    console.log(req.body);
+    try {
+        const result = await pool.query("INSERT INTO destination(destination_name) VALUES($1) RETURNING *", [req.body.destination_name]);
+        res.status(200).json({
+            status:"success",
+            data: {
+                destination: result.rows[0],
+             },
+         });
+    } catch (err) {
+        console.error(err.message);
+    }
+});
+//delete a destination
+app.delete("/api/destinations/:name", async (req, res) => { //TIP: URLS do not contain spaces. Pass in destination without a space.
+    try {
+        const result = await pool.query("DELETE FROM destination WHERE destination_name = $1", [req.params.name]);
+        res.status(200).json({
+            status:"successfully deleted"
+        });
+    }
+    catch (err) {
+        console.error(err.message);
+    }
+});
 
 
 
