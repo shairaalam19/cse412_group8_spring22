@@ -1,4 +1,5 @@
 import React from 'react';
+import HikerAPI from "../../apis/HikerAPI";
 import '../../App.css';
 import { HeroSection } from '../HeroSection';
 import { UserForm } from '../UserForm';
@@ -7,10 +8,22 @@ export function User(user) {
 
     function getUserDetails(){
         let userID = 1; // connect to database to get user details 
+        const fetchData = async() => {
+            try{
+                const response = await HikerAPI.get("/");
 
-        // call hiker database 
-        // console.log(res.json);
-
+                //print user details
+                console.log("id: " + response.data.hikers[userID].hiker_userid);
+                console.log("username: " + response.data.hikers[userID].hiker_username);
+                console.log("password: " + response.data.hikers[userID].hiker_password);
+                console.log("state: " + response.data.hikers[userID].hiker_state);
+      
+              }catch(err){
+                console.log(err);
+              }
+            }//end of fetch data
+            fetchData();
+        
         return(
             <p>User ID: {userID}</p>
         )
