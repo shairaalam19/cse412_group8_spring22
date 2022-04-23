@@ -48,14 +48,14 @@ return (
               Home
             </Link>
           </li>
-          <li className='nav-item'>
+          {/* <li className='nav-item'>
             <Link to='/map' className='nav-links' onClick={closeMobileMenu}>
-              Map
+              Destination Details
             </Link>
-          </li>
+          </li> */}
           <li className='nav-item'>
-            <Link to='/destination' className='nav-links' onClick={closeMobileMenu}>
-              Destination
+            <Link to='/destinations' className='nav-links' onClick={closeMobileMenu}>
+              Destinations
             </Link>
           </li>
           <li className='nav-item'>

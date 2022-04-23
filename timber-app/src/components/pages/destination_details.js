@@ -1,9 +1,8 @@
 import React from 'react';
 import '../../App.css';
-import { HeroSection } from '../HeroSection';
 import { Destination_Cards } from '../Destination_Cards';
 
-export function Destination() {
+export function destination_details() {
   return (
     <>
       {/* <HeroSection /> */}
@@ -12,4 +11,4 @@ export function Destination() {
   );
 }
 
-export default Destination;
+export default destination_details;

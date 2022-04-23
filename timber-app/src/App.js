@@ -4,8 +4,8 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
 import Navbar from './components/Navbar';
 import {Home} from './components/pages/Home';
-import {Destination} from './components/pages/Destination';
-import {Map} from './components/pages/Map';
+import {Destinations} from './components/pages/Destinations';
+import {destination_details} from './components/pages/destination_details';
 import {Sign_up} from './components/pages/Sign-up';
 import {User} from './components/pages/User';
 
@@ -17,8 +17,8 @@ function App() {
         <Navbar />
         <Routes>
           <Route path='/' element={<Home/>} />
-          <Route path='/destination' element={<Destination/>} />
-          <Route path='/map' element={<Map/>} />
+          <Route path='/destinations' element={<Destinations/>} />
+          <Route path='/details' element={<destination_details/>} />
           <Route path='/user' element={<User/>} />
           <Route path='/sign-up' element={<Sign_up/>} />
         </Routes>

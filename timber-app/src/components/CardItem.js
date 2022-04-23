@@ -1,5 +1,6 @@
 import React, {useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
+import {destination_details} from './pages/destination_details';
 import "./Button.css";
 
 function CardItem(props) {
@@ -14,13 +15,8 @@ function CardItem(props) {
   }
 
   const [like, setLike] = useState(true);
-  const [notLike, setNotLike] = useState(false);
   const [likeText, setLikeText] = useState(likeState.notLike);
   const [likeColor, setLikeColor] = useState(colorState.notLike);
-
-  // useEffect(() => {
-  //   console.log(like);
-  // }, []);
 
   function clickLike(){
     setLike(!like);
@@ -40,7 +36,7 @@ function CardItem(props) {
   return (
     <>
       <li className="cards__item__link">
-        <Link className="cards__item__link" to={props.path}>
+        {/* <Link className="cards__item__link" to={props.path}>
           <figure className="cards__item__pic-wrap" data-category={props.label}>
             <img
               src={props.src}
@@ -48,9 +44,9 @@ function CardItem(props) {
               className="cards__item__img"
             />
           </figure>
-        </Link>
-        <div className="cards__item__link">
-          <Link className="cards__item__info" to={props.path}>
+        </Link> */}
+        <div className="cards__item__link" >
+          <Link className="cards__item__info" to={props.path} >
             <h5 className="cards__item__text">{props.text}</h5>
           </Link>
           <button className="cards__item__button" className={likeColor} onClick={() => clickLike()}>{likeText}</button>

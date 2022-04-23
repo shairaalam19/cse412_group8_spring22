@@ -4,8 +4,39 @@ import "./Cards.css";
 import {Button} from './Button';
 
 
-
 export function Destination_Cards() {
+
+  function card(destination){
+    return (
+      <ul className="cards__items">
+        <CardItem
+          // src="images/img-9.jpg"
+          text="Explore the hidden waterfall deep inside the Amazon Jungle"
+          // text={destination}
+          label="Adventure"
+          path="/sign-up"
+          destination={destination}
+        />
+      </ul>
+    )
+  }
+
+  function allCards(){
+
+    const items = [];
+
+    for(var i = 0; i < 5; i++){
+      items.push(card("Grand Canyon"));
+    }
+
+    return (
+      <>
+        {items}
+      </>
+    )
+
+  }
+
   return (
     // Padding of the page contents 
     <div className="cards">
@@ -13,14 +44,14 @@ export function Destination_Cards() {
       {/* structure of the cards that are being displayed */}
       <div className="cards__container">
         <div className="cards__wrapper">
-
+          {allCards()}
           {/* Creates a card row wit hthe "cards__items" class */}
-          <ul className="cards__items">
+          {/* <ul className="cards__items">
             <CardItem
               src="images/img-9.jpg"
               text="Explore the hidden waterfall deep inside the Amazon Jungle"
               label="Adventure"
-              path="/services"
+              path="/sign-up"
               destination="Amazon Jungle"
             />
           </ul>
@@ -29,7 +60,7 @@ export function Destination_Cards() {
               src="images/img-2.jpg"
               text="Travel through the islands of Bali in a private cruise"
               label="Luxury"
-              path="/services"
+              path="/details"
               destination="Bali"
             />
           </ul>
@@ -39,7 +70,7 @@ export function Destination_Cards() {
               src="images/img-3.jpg"
               text="Set sail in the Atlantic Ocean visiting uncharted waters"
               label="Mystery"
-              path="/services"
+              path="/details"
               destination="Atlantic Ocean"
             />
           </ul>
@@ -48,7 +79,7 @@ export function Destination_Cards() {
               src="images/img-4.jpg"
               text="Experience football at the top of the Himilayan Mountains"
               label="Adventure"
-              path="/sign-up"
+              path="/details"
               destination="Himilayan Mountains"
             />
           </ul>
@@ -57,10 +88,10 @@ export function Destination_Cards() {
               src="images/img-8.jpg"
               text="Ride through the Sahara Desert on a guided camel tour"
               label="Adrenaline"
-              path="/sign-up"
+              path="/details"
               destination="Sahara Desert"
             />
-          </ul>
+          </ul> */}
         </div>
       </div>
     </div>

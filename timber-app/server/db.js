@@ -1,4 +1,5 @@
 const Pool = require("pg").Pool;
+require('dotenv').config()
 
 //configure heroku yyyydatabase with server
 //this we will be use to run our query
@@ -17,7 +18,7 @@ const pool = new Pool({
 //******************using local host temporarily***************************
 const pool = new Pool({
     user: "postgres",
-    password: "password",
+    password: "shaq2001",
     host: "localhost",
     database: "timberapp",
     port: 5432
