@@ -3,8 +3,8 @@ import DestinationAPI from "../../apis/destinationAPI";
 import '../../App.css';
 import { Destination_Cards } from '../Destination_Cards';
 
-export function Destinations() {
-  console.log("open destination page");
+export function Destinations(destination) {
+
   const [destinationData, setDestinationData] = useState({
     destination_name: "",
   })
@@ -33,13 +33,12 @@ export function Destinations() {
 
   }
 
+  
   return (
-    <>
-        <div className="destination">
-            <h1>destination Details</h1>
-            {getDestinationDetails("Grand Canyon")}
-        </div>
+     <>
+      <Destination_Cards/>
     </>
+
   );
 }
 
