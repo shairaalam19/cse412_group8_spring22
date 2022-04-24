@@ -1,45 +1,44 @@
-import React, {useEffect} from 'react';
+import React, {useState} from 'react';
 import DestinationAPI from "../../apis/destinationAPI";
 import '../../App.css';
 import { Destination_Cards } from '../Destination_Cards';
 
 export function Destinations() {
-   console.log("open destination page");
-
-    //fetching all destinations via API
-    useEffect(() => {
-      const fetchData = async() => {
-        try{
-          const response = await DestinationAPI.get("/");
-          
-          //================== Different ways to retrieve data =====================
-          
-          //get entire response
-          console.log(response);
-          //get total number of destination results
-          console.log("size: " + response.data.size); 
-          //get all destinations
-          for(let i = 0; i < response.data.size; i++){
-            console.log("destination at " + i + ": " + response.data.destinations[i].destination_name);
-          }
-          //========================================================================
-
-        }catch(err){
-          console.log(err);
-        }
-      }//end of fetch data
+  console.log("open destination page");
+  const [destinationData, setDestinationData] = useState({
+    destination_name: "",
+  })
+    
+  function getDestinationDetails(destination_name){
+    const fetchData = async() => {
+      try{
+        const response = await DestinationAPI.get("/");
+        setDestinationData({
+          destination_name: response.data.destinations[destination_name].destination_destination_name,
+        });
+      }
+      catch(err){
+        console.log(err);
+        // return err;
+      }
+    }//end of fetch data
       
-      
-      fetchData();
+    fetchData();
 
+    return(
+      <>
+        <p>Destination Name: {destinationData.destination_destination_name}</p>
+      </>
+    )
 
-
-    },[]) //empty dependency, runs only once
+  }
 
   return (
     <>
-      {/* <HeroSection /> */}
-      <Destination_Cards/>
+        <div className="destination">
+            <h1>destination Details</h1>
+            {getDestinationDetails("Grand Canyon")}
+        </div>
     </>
   );
 }
