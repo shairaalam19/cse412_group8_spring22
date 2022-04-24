@@ -7,24 +7,25 @@ import {Home} from './components/pages/Home';
 import {Destinations} from './components/pages/Destinations';
 import {destination_details} from './components/pages/destination_details';
 import {Sign_up} from './components/pages/Sign-up';
-import {User} from './components/pages/User';
+import { User } from './components/pages/User';
+import { CookiesProvider, useCookies } from 'react-cookie';
 
 
 function App() {
-  return (
-    <>
-      <Router>
-        <Navbar />
-        <Routes>
-          <Route path='/' element={<Home/>} />
-          <Route path='/destinations' element={<Destinations/>} />
-          <Route path='/details' element={<destination_details/>} />
-          <Route path='/user' element={<User/>} />
-          <Route path='/sign-up' element={<Sign_up/>} />
-        </Routes>
-      </Router>
-    </>
-  )
+    return (
+        <CookiesProvider>
+            <Router>
+                <Navbar />
+                <Routes>
+                    <Route path='/' element={<Home />} />
+                    <Route path='/destinations' element={<Destinations />} />
+                    <Route path='/details' element={<destination_details />} />
+                    <Route path='/user' element={<User />} />
+                    <Route path='/sign-up' element={<Sign_up />} />
+                </Routes>
+            </Router>
+            </CookiesProvider>
+    );
 }
 
 

@@ -1,81 +1,107 @@
-import React, {useState, useEffect} from 'react';
-import {Link} from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import './Navbar.css';
-import {Button} from './Button';
-
+import { Button } from './Button';
+import Cookies from 'js-cookie';
 
 function Navbar() {
-    
-const[click, setClick] = useState(false);
 
-const [button, setButton] = useState(true);
+    const [click, setClick] = useState(false);
 
-const handleClick = () => setClick(!click);
+    const [button, setButton] = useState(true);
 
-const closeMobileMenu = () => setClick(false);
+    const handleClick = () => setClick(!click);
 
-const showButton = () => {
-  if(window.innerWidth <= 960){
-    setButton(false);
-  } else{
-    setButton(true);
-  }
-}
+    const closeMobileMenu = () => setClick(false);
 
-useEffect(() => {
-  showButton()
-}, []);
+    const showButton = () => {
+        if (window.innerWidth <= 960) {
+            setButton(false);
+        } else {
+            setButton(true);
+        }
+    }
+
+    useEffect(() => {
+        showButton()
+    }, []);
 
 
-window.addEventListener('resize', showButton);
-
-return (
-    <>
-    <nav className='navbar'>
-       <div className='navbar-container'>
-        
-        <Link to='/' className='navbar-logo' onClick={closeMobileMenu} >
-            TIMBER <i className='fab fa-typo3' />
-        </Link> 
-        
-        <div className='menu-icon' onClick={handleClick}>
-          <i className={click ? 'fas fa-times' : 'fas fa-bars'} />
-        </div>
-
-        <ul className={click ? 'nav-menu active' : 'nav-menu'} >
-          <li className='nav-item'>
-            <Link to='/' className='nav-links' onClick={closeMobileMenu}>
-              Home
+    window.addEventListener('resize', showButton);
+    // {/* button && <Button buttonStyle='btn--outline' path='/sign-up'> LOGIN </Button> */}
+    const showLogin = () => {
+        return (
+            <Link to='/sign-up' className='btn--outline' onClick={closeMobileMenu}
+                style={{ display: Cookies.get('name') == null ? '' : 'none', }}>
+                Log In (Not logged in!)
             </Link>
-          </li>
-          {/* <li className='nav-item'>
+
+            );
+    }
+
+    const showLogOff = () => {
+        return (
+            <Link to='/sign-up' className='btn--outline' onClick={closeMobileMenu}
+                style={{ display: Cookies.get('name') != null ? '' : 'none', }}>
+                Log Off (Logged in!)
+            </Link>
+
+        );
+    }
+
+    return (
+        <>
+            <nav className='navbar'>
+                <div className='navbar-container'>
+
+                    <Link to='/' className='navbar-logo' onClick={closeMobileMenu} >
+                        TIMBER <i className='fab fa-typo3' />
+                    </Link>
+
+                    <div className='menu-icon' onClick={handleClick}>
+                        <i className={click ? 'fas fa-times' : 'fas fa-bars'} />
+                    </div>
+
+                    <div class='menu-icon'>
+                        
+                    </div>
+
+                    <ul className={click ? 'nav-menu active' : 'nav-menu'} >
+                        <li className='nav-item'>
+                            <Link to='/' className='nav-links' onClick={closeMobileMenu}>
+                                Home
+                            </Link>
+                        </li>
+                        {/* <li className='nav-item'>
             <Link to='/map' className='nav-links' onClick={closeMobileMenu}>
               Destination Details
             </Link>
           </li> */}
-          <li className='nav-item'>
-            <Link to='/destinations' className='nav-links' onClick={closeMobileMenu}>
-              Destinations
-            </Link>
-          </li>
-          <li className='nav-item'>
-            <Link to='/user' className='nav-links' onClick={closeMobileMenu}>
-              User
-            </Link>
-          </li>
-          <li className='nav-item'>
-            <Link to='/sign-up' className='nav-links-mobile' onClick={closeMobileMenu}>
-              Sign Up
-            </Link>
-          </li>
-        </ul>
-        
-        {button && <Button buttonStyle='btn--outline' path='/sign-up'> SIGN UP </Button>}
-        </div> 
+                        <li className='nav-item'>
+                            <Link to='/destinations' className='nav-links' onClick={closeMobileMenu}>
+                                Destinations
+                            </Link>
+                        </li>
+                        <li className='nav-item'>
+                            <Link to='/user' className='nav-links' onClick={closeMobileMenu}>
+                                User
+                            </Link>
+                        </li>
+                        <li className='nav-item'>
+                            <Link to='/sign-up' className='nav-links-mobile' onClick={closeMobileMenu}>
+                                Sign Up
+                            </Link>
+                        </li>
 
-    </nav>
-    </>
-  )
+                    </ul>
+                    {showLogin()}
+                    {showLogOff()}
+                    {/* button && <Button buttonStyle='btn--outline' path='/sign-up'> LOGIN </Button> */}
+                </div>
+
+            </nav>
+        </>
+    )
 }
 
 export default Navbar;
