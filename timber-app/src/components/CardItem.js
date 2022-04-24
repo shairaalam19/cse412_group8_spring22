@@ -47,7 +47,8 @@ function CardItem(props) {
         </Link> */}
         <div className="cards__item__link" >
           <Link className="cards__item__info" to={props.path} >
-            <h5 className="cards__item__text">{props.text}</h5>
+            <h5 className="cards__item__title">{props.title}</h5>
+            <h4 className="cards__item__text">{props.text}</h4>
           </Link>
           <button className="cards__item__button" className={likeColor} onClick={() => clickLike()}>{likeText}</button>
         </div>

@@ -28,7 +28,12 @@ export function Destinations() {
           console.log(err);
         }
       }//end of fetch data
+      
+      
       fetchData();
+
+
+
     },[]) //empty dependency, runs only once
 
   return (

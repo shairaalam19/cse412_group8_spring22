@@ -96,12 +96,24 @@
   
   .cards__item__info {
     padding: 20px 30px 30px;
+    text-decoration: none;
+  }
+
+  .cards__item__title {
+    color: #252e48;
+    font-size: 25px;
+    line-height: 24px;
+    text-decoration: none;
+    align-items: center;
+    justify-content: center;
   }
   
   .cards__item__text {
-    color: #252e48;
+    color: #252e486e;
     font-size: 18px;
     line-height: 24px;
+    text-decoration: none;
+    /* font-style: italic; */
   }
   
   @media only screen and (min-width: 1200px) {
