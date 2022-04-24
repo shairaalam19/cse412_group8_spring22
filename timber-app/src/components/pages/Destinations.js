@@ -3,45 +3,43 @@ import DestinationAPI from "../../apis/destinationAPI";
 import '../../App.css';
 import { Destination_Cards } from '../Destination_Cards';
 
-export function Destinations() {
+export function Destination(destination) {
    console.log("open destination page");
-
-    //fetching all destinations via API
-    useEffect(() => {
+   const [destinationData, setUserData] = useState({
+      destination_name: "",
+   })
+    
+   function getDestinationDetails(destination_name){
       const fetchData = async() => {
-        try{
-          const response = await DestinationAPI.get("/");
-          
-          //================== Different ways to retrieve data =====================
-          
-          //get entire response
-          console.log(response);
-          //get total number of destination results
-          console.log("size: " + response.data.size); 
-          //get all destinations
-          for(let i = 0; i < response.data.size; i++){
-            console.log("destination at " + i + ": " + response.data.destinations[i].destination_name);
-          }
-          //========================================================================
-
-        }catch(err){
-          console.log(err);
-        }
+         try{
+           const response = await destinationAPI.get("/");
+           setDestinationData({
+             destination_name: response.data.destinations[destination_name].destination_destination_name,
+           });
+         }
+         catch(err){
+           console.log(err);
+           // return err;
+         }
       }//end of fetch data
-      
       
       fetchData();
 
+      return(
+         <>
+           <p>Destination Name: {destinationData.destination_destination_name}</p>
+         </>
+      )
+   }
 
-
-    },[]) //empty dependency, runs only once
-
-  return (
-    <>
-      {/* <HeroSection /> */}
-      <Destination_Cards/>
-    </>
-  );
+   return (
+      <>
+        <div className="destination">
+            <h1>destination Details</h1>
+            {getDestinationDetails("Grand Canyon")}
+        </div>
+      </>
+   );
 }
 
 export default Destinations;
