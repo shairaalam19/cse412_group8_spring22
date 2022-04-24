@@ -1,4 +1,5 @@
 import React, {useState, useEffect } from "react";
+import FavoriteAPI from "../apis/FavoriteAPI";
 import { Link, useLocation } from "react-router-dom";
 import {destination_details} from './pages/destination_details';
 import "./Button.css";
@@ -24,11 +25,53 @@ function CardItem(props) {
       setLikeText(likeState.like);
       setLikeColor(colorState.like);
       console.log("Liked " + props.destination);
+
+      // ==================== INSERT FAVORITES TO DATABASE ===============================
+      //DUMMY VAL
+      const userid_dummy = 1;
+      const destination_dummy = "Grand Canyon";
+      
+      const addFavorites = async () => {
+        try{
+            const result = await FavoriteAPI.post("/", 
+              {  // vvvv this is the format for INSERTING data into the our database
+                hiker_userid: userid_dummy,
+                destination_name: destination_dummy
+              }
+          )
+          console.log(result);
+        }catch(err){
+          console.log(err);
+        }
+      }
+      addFavorites();
+      // ===========================================================================
+ 
     }
     else if (like == false){
       setLikeText(likeState.notLike);
       setLikeColor(colorState.notLike);
       console.log("Unliked " + props.destination);
+
+      // ==================== REMOVE FAVORITES FROM DATABASE ===============================
+      //DUMMY VAL
+      const userid_dummy = 1;
+      const destination_dummy = "Grand Canyon";
+
+      console.log("user to delete: " + userid_dummy);
+      console.log("destination to delete: " + destination_dummy);
+      
+      const removeFavorites = async () => {
+        try{ //two parameters passed in the url for DELETION
+            const result = await FavoriteAPI.delete(`/${userid_dummy}&${destination_dummy}`) 
+          console.log(result);
+        }catch(err){
+          console.log(err);
+        }
+      }
+      removeFavorites();
+      // ===========================================================================
+
     }
 
   }
