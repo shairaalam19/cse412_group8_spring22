@@ -63,15 +63,21 @@ return (
               User
             </Link>
           </li>
-          <li className='nav-item'>
+          {/* <li className='nav-item'>
             <Link to='/sign-up' className='nav-links-mobile' onClick={closeMobileMenu}>
               Sign Up
             </Link>
-          </li>
+          </li> */}
+          {/* <li className='nav-item'>
+            <Link to='/sign-in' className='nav-links-mobile' onClick={closeMobileMenu}>
+              Sign In
+            </Link>
+          </li> */}
         </ul>
         
-        {button && <Button buttonStyle='btn--outline' path='/sign-up'> SIGN UP </Button>}
-        </div> 
+        {button && <Button buttonStyle='btn--outline' path='/sign-up'> SIGN UP or LOG IN </Button>}
+      
+      </div> 
 
     </nav>
     </>

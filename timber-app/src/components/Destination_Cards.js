@@ -20,7 +20,10 @@ export function Destination_Cards(props) {
           // src="images/img-9.jpg"
           // text="Explore the hidden waterfall deep inside the Amazon Jungle"
           title={destination}
-          text="Description"  
+          trails="Trails" 
+          accessibility="Accessibility" 
+          location="Location"
+          climate="Climate"
           label="Adventure"
           path="/sign-up"
         />

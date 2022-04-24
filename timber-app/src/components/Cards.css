@@ -6,6 +6,8 @@
   .cards > h1 {
     text-align: center;
   }
+
+
   
   .cards__container {
     display: flex;
@@ -42,6 +44,8 @@
     border-radius: 10px;
     overflow: hidden;
     text-decoration: none;
+    align-items: center;
+    justify-content: center;
   }
 
   .cards__item__button{
@@ -95,8 +99,10 @@
   }
   
   .cards__item__info {
-    padding: 20px 30px 30px;
+    padding: 20px 30px 30px 20px;
     text-decoration: none;
+    /* align-items: center;
+    justify-content: center; */
   }
 
   .cards__item__title {
@@ -104,8 +110,8 @@
     font-size: 25px;
     line-height: 24px;
     text-decoration: none;
-    align-items: center;
-    justify-content: center;
+    /* align-items: center;
+    justify-content: center; */
   }
   
   .cards__item__text {
@@ -113,9 +119,37 @@
     font-size: 18px;
     line-height: 24px;
     text-decoration: none;
-    /* font-style: italic; */
+    
   }
-  
+
+  .cards__item__trails {
+    color: #252e48a3;
+    font-size: 20px;
+    line-height: 24px;
+    text-decoration: none;
+  }
+
+  .cards__item__accessibility {
+    color: #252e486e;
+    font-size: 15px;
+    line-height: 24px;
+    text-decoration: none;
+  }
+
+  .cards__item__location {
+    color: #252e48a3;
+    font-size: 20px;
+    line-height: 24px;
+    text-decoration: none;
+  }
+
+  .cards__item__climate {
+    color: #252e486e;
+    font-size: 15px;
+    line-height: 24px;
+    text-decoration: none;
+  }
+
   @media only screen and (min-width: 1200px) {
     .content__blog__container {
       width: 84%;
