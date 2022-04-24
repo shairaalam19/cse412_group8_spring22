@@ -1,5 +1,4 @@
 const Pool = require("pg").Pool;
-require('dotenv').config()
 
 //local host only
 const pool = new Pool({
