@@ -1,5 +1,6 @@
 
 import { useState } from 'react';
+import HikerAPI from "../apis/HikerAPI";
 
 export function UserForm() {
 
@@ -37,6 +38,23 @@ export function UserForm() {
         if (name === '' || state === '' || password === '') {
             setError(true);
         } else {
+            const addHikers = async () => {
+                try{
+                    const result = await HikerAPI.post("/", 
+                      {  // vvvv this is the format for INSERTING data into the our database
+                        hiker_userid: 10000, //NEEDS TO BE RANDOMIZED
+                        hiker_username: name,
+                        hiker_password: password,
+                        hiker_state: state
+                      }
+                  )
+                  console.log(result);
+                }catch(err){
+                  console.log(err);
+                }
+              }
+              addHikers();
+
             setSubmitted(true);
             setError(false);
         }
