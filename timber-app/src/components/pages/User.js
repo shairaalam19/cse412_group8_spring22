@@ -3,6 +3,7 @@ import HikerAPI from "../../apis/HikerAPI";
 import '../../App.css';
 import { HeroSection } from '../HeroSection';
 import { UserForm } from '../UserForm';
+import Cookies from 'js-cookie';
 
 export function User(user) {
     const [userData, setUserData] = useState({
@@ -12,16 +13,24 @@ export function User(user) {
         hiker_state: ""
     })
     
-    function getUserDetails(userID){
+    function getUserDetails(name){
         // var userID = 1; // connect to database to get user details
         const fetchData = async() => {
             try{
                 const response = await HikerAPI.get("/");
+                const users = response.data.hikers;
+                var i = 0;
+                for(i = 0; i < response.data.length; i++){
+                    if(users[i] == name){
+                        break;
+                    }
+                }
+
                 setUserData({
-                    hiker_userid: response.data.hikers[userID].hiker_userid,
-                    hiker_username: response.data.hikers[userID].hiker_username,
-                    hiker_password: response.data.hikers[userID].hiker_password,
-                    hiker_state: response.data.hikers[userID].hiker_state
+                    hiker_userid: response.data.hikers[i].hiker_userid,
+                    hiker_username: response.data.hikers[i].hiker_username,
+                    hiker_password: response.data.hikers[i].hiker_password,
+                    hiker_state: response.data.hikers[i].hiker_state
                 });
                 //print user details
                 // console.log("id: " + response.data.hikers[userID].hiker_userid);
@@ -59,7 +68,7 @@ export function User(user) {
         <>
             <div className="user">
                 <h1>User Details</h1>
-                {getUserDetails(0)}
+                {getUserDetails(Cookies.get("name"))}
             </div>
             <div className="user">
                 <h1>Favorites</h1>

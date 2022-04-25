@@ -26,18 +26,18 @@ export function Destinations(destination) {
       
     fetchData();
 
-    return(
-      <>
-        <p>Destination Name: {destinationData.destination_destination_name}</p>
-      </>
-    )
+    // return(
+    //   <>
+    //     <p>Destination Name: {destinationData.destination_destination_name}</p>
+    //   </>
+    // )
 
   }
 
   
   return (
-     <>
-      <Destination_Cards/>
+    <>
+      <Destination_Cards destinations={destinationData}/>
     </>
 
   );

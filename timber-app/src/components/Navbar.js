@@ -102,7 +102,7 @@ function Navbar() {
                         </li>
                         <li className='nav-item'>
                             <Link to='/user' className='nav-links' onClick={closeMobileMenu}>
-                                User
+                                User Details
                             </Link>
                         </li>
                         <li className='nav-item'>
