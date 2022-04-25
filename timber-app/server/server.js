@@ -186,6 +186,116 @@ app.delete("/api/favorites/:id&:dest", async (req, res) => {
     }
 });
 
+//get favorite destination(s) of a user based on user ID
+app.get("/api/favorites/:id", async (req, res) => {
+    try {
+        const result = await pool.query("SELECT favorites.destination_name FROM favorites WHERE favorites.hiker_userid = $1", [req.params.id]);
+                res.status(200).json({
+            status:"success",
+            size: result.rows.length, //total array size
+            favorites: result.rows,
+        });
+    }
+    catch (err) {
+        console.error(err.message);
+    }
+});
+
+// --------------- More complex, but useful queries for sort and filtering --------------------
+
+//find all destinations that have a similar destination name (input)
+//example: http://localhost:5000/api/destinations/search/?destination_name=ja
+app.get("/api/destinations/search", async (req, res)=> {
+    try{
+        const { destination_name } = req.query;
+        const result = await pool.query("SELECT * FROM destination WHERE destination_name ILIKE $1", [`%${destination_name}%`])
+        res.status(200).json({
+            status:"success",
+            size: result.rows.length, //total array size
+            destinations: result.rows
+        });
+    }catch(err){
+        console.error(err.message);
+    }
+});
+
+//find all trails that belong to a similar destination name (input)
+app.get("/api/hastrails/search", async (req, res)=> {
+    try{
+        const { destination_name } = req.query;
+        const result = await pool.query("SELECT trail_name FROM has_trail WHERE destination_name ILIKE $1", [`%${destination_name}%`])
+        res.status(200).json({
+            status:"success",
+            size: result.rows.length, //total array size
+            trails: result.rows
+        });
+    }catch(err){
+        console.error(err.message);
+    }
+});
+
+//find all trails filtered by length , difficulty, and elevation gain
+//example: http://localhost:5000/api/trails/search/?minLength=0&maxLength=5
+app.get("/api/trails/search/filter", async (req, res)=> {
+    try{ 
+        const { minLength, maxLength, difficulty, minGain, maxGain, orderBy } = req.query;
+        const result = await pool.query("SELECT trail_name, trail_length, trail_difficulty, trail_elevationgain FROM trail WHERE trail_length > $1 AND trail_length < $2 AND trail_difficulty = $3 AND trail_elevationgain>$4 AND trail_elevationgain<$5 ORDER BY $6 ASC", [minLength,maxLength, difficulty, minGain,maxGain,orderBy]);
+        res.status(200).json({
+            status:"success",
+            size: result.rows.length, //total array size
+            trails: result.rows
+        });
+    }catch(err){
+        console.error(err.message);
+    }
+});
+
+//Find a destination nearby based on the user's state
+app.get("/api/destination/hometown/:id", async (req, res)=> {
+    try{
+        const result = await pool.query("select hiker_state, destination.destination_name from destination, hiker, location, is_located where destination.destination_name=is_located.destination_name AND is_located.location_coordinate = location.location_coordinate AND location.location_state = hiker.hiker_state AND hiker_userid = $1;", [req.params.id])
+        res.status(200).json({
+            status:"success",
+            size: result.rows.length, //total array size
+            destinations_nearby: result.rows
+        });
+    }catch(err){
+        console.error(err.message);
+    }
+});
+
+//Find a destination filtered by state
+app.get("/api/destinations/search/filter/state", async (req, res)=> {
+    try{    //type being either by state, city, zipcode
+        const {val} = req.query;
+        const result = await pool.query("select destination.destination_name from destination, location, is_located where destination.destination_name=is_located.destination_name AND is_located.location_coordinate = location.location_coordinate AND location_state=$1;", [val])
+        res.status(200).json({
+            status:"success",
+            size: result.rows.length, //total array size
+            destinations: result.rows
+        });
+    }catch(err){
+        console.error(err.message);
+    }
+});
+
+//Find a destionation filtered by zip code
+app.get("/api/destinations/search/filter/zipcode", async (req, res)=> {
+    try{    //type being either by state, city, zipcode
+        const {val} = req.query;
+        const result = await pool.query("select destination.destination_name from destination, location, is_located where destination.destination_name=is_located.destination_name AND is_located.location_coordinate = location.location_coordinate AND location_zipcode=$1;", [val])
+        res.status(200).json({
+            status:"success",
+            size: result.rows.length, //total array size
+            destinations: result.rows
+        });
+    }catch(err){
+        console.error(err.message);
+    }
+});
+
+//find all destinations by zipcode
+
 
 
 
