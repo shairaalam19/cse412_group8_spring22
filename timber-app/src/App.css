@@ -57,3 +57,8 @@
   color: #fff;
   font-size: 100px;
 }
+
+.reg-table {
+    width: 50%;
+    table-layout: fixed;
+}
