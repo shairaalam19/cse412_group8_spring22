@@ -22,18 +22,25 @@ export function Destination_Cards(props) {
   // }); // Destination names
 
   function card(destination){
+    var trails_string = "";
+    for(var i = 0; i < destination.trails.length-1; i++){
+      trails_string = trails_string + destination.trails[i] + ", ";
+    }
+    trails_string = trails_string + destination.trails[destination.trails.length-1];
+
+
     return (
       <ul className="cards__items">
         <CardItem
           // src="images/img-9.jpg"
           // text="Explore the hidden waterfall deep inside the Amazon Jungle"
           title={destination.destination}
-          trails="Trails"
-          accessibility="Accessibility" 
-          location="Location"
-          climate="Climate"
+          trails={trails_string}
+          // accessibility={destination.accessibility}
+          location={destination.location}
+          climate={destination.climate}
           label="Adventure"
-          path="/sign-up"
+          path="/destinations"
         />
       </ul>
     )
@@ -41,15 +48,15 @@ export function Destination_Cards(props) {
 
   function allCards(){
     const items = [];
-    console.log("inside allCards");
+    // console.log("inside allCards");
     // console.log("inside allCards: list = ");
-    console.log(list);
+    // console.log(list);
     for(var i = 0; i < list.destinations.length; i++){
       items.push(
         card(list.destinations[i])
       );
     }
-    console.log(list.destinations.length);
+    // console.log(list.destinations.length);
     return (
       <>
         {items}
@@ -72,10 +79,11 @@ export function Destination_Cards(props) {
         const contents = {
           destinations: []
         }; 
+        const trails_val = ['a', 'b', 'c'];
         for(var i = 0; i < parseResults.destinations.length; i++){
           contents.destinations.push({
             destination: parseResults.destinations[i].destination_name,
-            trails: "Trails", 
+            trails: trails_val, 
             accessibility: "accessibility",
             location: "location",
             climate: "climate"
@@ -85,7 +93,6 @@ export function Destination_Cards(props) {
         // console.log(contents);
 
         setList(contents);
-        
 
       }
       else if(sel.value=="state"){
@@ -96,10 +103,11 @@ export function Destination_Cards(props) {
         const contents = {
           destinations: []
         }; 
+        const trails_val = ['a', 'b', 'c'];
         for(var i = 0; i < parseResults.destinations.length; i++){
           contents.destinations.push({
             destination: parseResults.destinations[i].destination_name,
-            trails: "Trails", 
+            trails: trails_val, 
             accessibility: "accessibility",
             location: "location",
             climate: "climate"
@@ -118,10 +126,11 @@ export function Destination_Cards(props) {
         const contents = {
           destinations: []
         }; 
+        const trails_val = ['a', 'b', 'c'];
         for(var i = 0; i < parseResults.destinations.length; i++){
           contents.destinations.push({
             destination: parseResults.destinations[i].destination_name,
-            trails: "Trails", 
+            trails: trails_val, 
             accessibility: "accessibility",
             location: "location",
             climate: "climate"
