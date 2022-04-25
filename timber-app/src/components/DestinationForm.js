@@ -105,7 +105,7 @@ export function DestinationForm() {
 							value={trailName} type="text" />
 					</div>
 					<div>
-						<input onChange={handleTrailLength} className="input" placeholder="Trail Details"
+						<input onChange={handleTrailLength} className="input" placeholder="Trail Length"
 							value={trailLength} type="text" />
 					</div>
 					<div>
