@@ -2,12 +2,30 @@ import React from 'react';
 import '../App.css';
 import { Button } from './Button';
 import './HeroSection.css';
+import Cookies from 'js-cookie';
+
+const renderWelcomeSignedIn = () => {
+    return (
+        <h1 style={{ display: Cookies.get('name') != null ? '' : 'none', }}>
+            WELCOME TO TIMBER, {Cookies.get('name')}!
+        </h1>
+        );
+}
+
+const renderWelcomeNoSign = () => {
+    return (
+        <h1 style={{ display: Cookies.get('name') == null ? '' : 'none', }}>
+            WELCOME TO TIMBER!
+        </h1>
+        );
+}
 
 export function HeroSection() {
   return (
     <div className='hero-container'>
       <video src='/videos/video-4.mp4' autoPlay loop muted />
-      <h1>WELCOME TO TIMBER</h1>
+          {renderWelcomeSignedIn()}
+          {renderWelcomeNoSign()}
       <p>Explore where your next destination will be!</p>
       <div className='hero-btns'>
         <Button
@@ -16,7 +34,7 @@ export function HeroSection() {
           buttonSize='btn--large'
           path='/sign-up'
         >
-          SIGN UP
+          LOGIN
         </Button>
         <Button
           className='btns'

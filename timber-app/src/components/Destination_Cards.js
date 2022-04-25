@@ -3,38 +3,48 @@ import CardItem from "./CardItem";
 import "./Cards.css";
 import {Button} from './Button';
 
+const list = [
+  "Grand Canyon", 
+  "Zion National Park",
+  "Camelback Mountain",
+  "Tonto National Forest",
+  "Colorado Springs"
+]
 
-export function Destination_Cards() {
+export function Destination_Cards(props) {
 
   function card(destination){
     return (
       <ul className="cards__items">
         <CardItem
           // src="images/img-9.jpg"
-          text="Explore the hidden waterfall deep inside the Amazon Jungle"
-          // text={destination}
+          // text="Explore the hidden waterfall deep inside the Amazon Jungle"
+          title={destination}
+          trails="Trails" 
+          accessibility="Accessibility" 
+          location="Location"
+          climate="Climate"
           label="Adventure"
           path="/sign-up"
-          destination={destination}
         />
       </ul>
     )
   }
 
-  function allCards(){
-
+  function allCards(size){
     const items = [];
 
-    for(var i = 0; i < 5; i++){
-      items.push(card("Grand Canyon"));
+    for(var i = 0; i < size; i++){
+      items.push(
+        card(list[i])
+      );
     }
 
     return (
       <>
         {items}
       </>
-    )
-
+    );
   }
 
   return (
@@ -44,7 +54,9 @@ export function Destination_Cards() {
       {/* structure of the cards that are being displayed */}
       <div className="cards__container">
         <div className="cards__wrapper">
-          {allCards()}
+          {/* <ul className="cards__items"> */}
+            {allCards(4)}
+          {/* </ul> */}
           {/* Creates a card row wit hthe "cards__items" class */}
           {/* <ul className="cards__items">
             <CardItem
