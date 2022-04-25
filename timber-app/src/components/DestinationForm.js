@@ -7,10 +7,12 @@ export function DestinationForm() {
 	const navigate = useNavigate();
 
 	const [trailName, setTrailName] = useState('');
-	const [trailDetails, setTrailDetails] = useState('');
+	const [trailLength, setTrailLength] = useState('');
 	const [accessibility, setAccessibility] = useState('');
 	const [location, setLocation] = useState('');
 	const [climate, setClimate] = useState('');
+	const [hours, setHours] = useState('');
+	const [difficulty, setDifficulty] = useState('');
 
 	const [submitted, setSubmitted] = useState(false);
 	const [error, setError] = useState(false);
@@ -21,8 +23,8 @@ export function DestinationForm() {
 
 	}
 
-	const handleTrailDetails = (e) => {
-		setTrailDetails(e.target.value);
+	const handleTrailLength = (e) => {
+		setTrailLength(e.target.value);
 		setSubmitted(false);
 	}
 
@@ -40,10 +42,18 @@ export function DestinationForm() {
 		setClimate(e.target.value);
 		setSubmitted(false);
 	}
+	const handleHours = (e) => {
+		setHours(e.target.value);
+		setSubmitted(false);
+	}
+	const handleDifficulty = (e) => {
+		setDifficulty(e.target.value);
+		setSubmitted(false);
+	}
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		if (trailDetails === '' || accessibility === '' || location === '' || climate === '') {
+		if (trailLength === '' || accessibility === '' || location === '' || climate === '') {
 			setError(true);
 		}
 		else {
@@ -95,8 +105,8 @@ export function DestinationForm() {
 							value={trailName} type="text" />
 					</div>
 					<div>
-						<input onChange={handleTrailDetails} className="input" placeholder="Trail Details"
-							value={trailDetails} type="text" />
+						<input onChange={handleTrailLength} className="input" placeholder="Trail Details"
+							value={trailLength} type="text" />
 					</div>
 					<div>
 						<input onChange={handleAccessibility} className="input" placeholder="Accessibility"
@@ -109,6 +119,14 @@ export function DestinationForm() {
 					<div>
 						<input onChange={handleClimate} className="input" placeholder="Climate"
 							value={climate} type="text" />
+					</div>
+					<div>
+						<input onChange={handleHours} className="input" placeholder="Hours"
+							value={hours} type="text" />
+					</div>
+					<div>
+						<input onChange={handleDifficulty} className="input" placeholder="Difficulty"
+							value={difficulty} type="text" />
 					</div>
 					<div>
 						<button onClick={handleSubmit} className="btn" type="submit">
