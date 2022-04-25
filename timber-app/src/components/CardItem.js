@@ -1,7 +1,6 @@
 import React, {useState, useEffect } from "react";
 import FavoriteAPI from "../apis/FavoriteAPI";
 import { Link, useLocation } from "react-router-dom";
-import {destination_details} from './pages/destination_details';
 import "./Button.css";
 
 function CardItem(props) {

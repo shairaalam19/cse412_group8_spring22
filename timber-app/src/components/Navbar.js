@@ -96,6 +96,11 @@ function Navbar() {
                             </Link>
                         </li>
                         <li className='nav-item'>
+                            <Link to='/insert-destination' className='nav-links' onClick={closeMobileMenu}>
+                                Add a Destination
+                            </Link>
+                        </li>
+                        <li className='nav-item'>
                             <Link to='/user' className='nav-links' onClick={closeMobileMenu}>
                                 User
                             </Link>
