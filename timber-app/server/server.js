@@ -220,6 +220,7 @@ app.get("/api/destinations/search", async (req, res)=> {
 });
 
 //find all trails that belong to a similar destination name (input)
+//url: http://localhost:5000/api/trails/search/?destination_name=gr
 app.get("/api/trails/search/", async (req, res)=> {
     try{
         const { destination_name } = req.query;
@@ -235,7 +236,7 @@ app.get("/api/trails/search/", async (req, res)=> {
 });
 
 //find all trails filtered by length , difficulty, and elevation gain
-//example: http://localhost:5000/api/trails/search/?minLength=0&maxLength=5
+//url: http://localhost:5000/api/trails/search/filter/?minLength=0&maxLength=9999&difficulty=easy&minGain=0&maxGain=9999&orderBy=trail_name
 app.get("/api/trails/search/filterall", async (req, res)=> {
     try{ 
         const { minLength, maxLength, difficulty, minGain, maxGain, orderBy } = req.query;
@@ -250,7 +251,8 @@ app.get("/api/trails/search/filterall", async (req, res)=> {
     }
 });
 
-//Find a destination nearby based on the user's state
+//Find a destination nearby based on the user's state (input=id)
+//url: http://localhost:5000/api/destinations/hometown/1
 app.get("/api/destination/hometown/:id", async (req, res)=> {
     try{
         const result = await pool.query("select hiker_state, destination.destination_name from destination, hiker, location, is_located where destination.destination_name=is_located.destination_name AND is_located.location_coordinate = location.location_coordinate AND location.location_state = hiker.hiker_state AND hiker_userid = $1;", [req.params.id])
@@ -264,7 +266,9 @@ app.get("/api/destination/hometown/:id", async (req, res)=> {
     }
 });
 
+
 //Find a destination filtered by state
+//url: http://localhost:5000/api/destinations/search/filter/state/?val=AZ
 app.get("/api/destinations/search/filter/state", async (req, res)=> {
     try{    //type being either by state, city, zipcode
         const {val} = req.query;
@@ -280,6 +284,7 @@ app.get("/api/destinations/search/filter/state", async (req, res)=> {
 });
 
 //Find a destionation filtered by zip code
+//url: http://localhost:5000/api/destinations/search/filter/zipcode/?val=85233
 app.get("/api/destinations/search/filter/zipcode", async (req, res)=> {
     try{    //type being either by state, city, zipcode
         const {val} = req.query;
@@ -294,7 +299,38 @@ app.get("/api/destinations/search/filter/zipcode", async (req, res)=> {
     }
 });
 
-//find all destinations by zipcode
+//Find accessibility by trail name
+//url: http://localhost:5000/api/trails/accessibility/?val=Hermit Trail
+app.get("/api/trails/accessibility", async (req, res)=> {
+    try{    
+        const {val} = req.query; //get trail_name
+        const result = await pool.query("select * from accessibility where trail_name=$1;", [val])
+        res.status(200).json({
+            status:"success",
+            size: result.rows.length, //total array size
+            accessibility: result.rows
+        });
+    }catch(err){
+        console.error(err.message);
+    }
+});
+
+//Find climate by location
+////url: http://localhost:5000/api/locations/climate/?val={location_coordinate}
+app.get("/api/locations/climate", async (req, res)=> {
+    try{    
+        const {val} = req.query; //get location_coordinate
+        const result = await pool.query("select * from climate where location_coordinate=$1;", [val])
+        res.status(200).json({
+            status:"success",
+            size: result.rows.length, //total array size
+            climate: result.rows
+        });
+    }catch(err){
+        console.error(err.message);
+    }
+});
+
 
 
 
