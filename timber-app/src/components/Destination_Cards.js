@@ -139,7 +139,7 @@ export function Destination_Cards(props) {
       else{
         const results = await fetch(`http://localhost:5000/api/destinations/search/filter/zipcode/?val=${searchInput}`);
         const parseResults = await results.json();
-
+      
         // Setting list state 
         const contents = {
           destinations: []
@@ -147,14 +147,13 @@ export function Destination_Cards(props) {
 
         for(var i = 0; i < parseResults.destinations.length; i++){
           const destName = parseResults.destinations[i].destination_name;
+          
           const trails = await fetch(`http://localhost:5000/api/trails/search/?destination_name=${destName}`);
           const trailResults = await trails.json();
-          
           var trailArray = [];
           for(var j = 0; j < trailResults.trails.length; j++){
             trailArray[j] = trailResults.trails[j].trail_name;
           }
-
           contents.destinations.push({
             destination: parseResults.destinations[i].destination_name,
             trails: trailArray, 
@@ -163,6 +162,8 @@ export function Destination_Cards(props) {
             climate: "climate"
           });
         }
+
+        setList(contents);
       }
     }
     catch(err){

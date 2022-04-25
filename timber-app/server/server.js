@@ -331,7 +331,32 @@ app.get("/api/locations/climate", async (req, res)=> {
     }
 });
 
+//add ONLY new trail name to the database
+app.post("/api/trails", async (req, res) => {
+    try { //TIP: returning * = returns entire hiker object
+        const result = await pool.query("INSERT INTO trail(trail_name,trail_length,trail_hoursOpen,trail_difficulty,trail_elevationGain) VALUES ($1, null,null,null,null) RETURNING *", [req.body.trail_name]);
+        res.status(200).json({
+            status:"success",
+            hiker: result.rows[0],
+         });
+    } catch (err) {
+        console.error(err.message);
+    }
+});
 
+//finds location address based on the destination name
+app.get("/api/location/address", async (req, res)=> {
+    try{    //type being either by state, city, zipcode
+        const {val} = req.query;
+        const result = await pool.query("select location.location_address from destination, location, is_located where destination.destination_name=is_located.destination_name AND is_located.location_coordinate = location.location_coordinate AND is_located.destination_name=$1", [val])
+        res.status(200).json({
+            status:"success",
+            location: result.rows
+        });
+    }catch(err){
+        console.error(err.message);
+    }
+});
 
 
 
