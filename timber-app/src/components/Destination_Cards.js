@@ -110,7 +110,7 @@ export function Destination_Cards(props) {
           <option value="zipcode">Zipcode</option>
         </select>
 
-        <button id="searchbutton" className="btn-success">Search</button>
+                      <button id="searchbutton" onClick={searchInput} className="btn-success">Search</button>
         
         </form>
       </div>
