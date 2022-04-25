@@ -1,14 +1,15 @@
 {
   "ExpandedNodes": [
     "",
+    "\\database",
     "\\timber-app",
     "\\timber-app\\public",
     "\\timber-app\\public\\videos",
     "\\timber-app\\server",
     "\\timber-app\\src",
-    "\\timber-app\\src\\apis",
-    "\\timber-app\\src\\components"
+    "\\timber-app\\src\\components",
+    "\\timber-app\\src\\components\\pages"
   ],
-  "SelectedNode": "\\timber-app\\src\\index.js",
+  "SelectedNode": "\\timber-app\\server\\server.js",
   "PreviewInSolutionExplorer": false
 }
