@@ -140,7 +140,7 @@ export function Destination_Cards(props) {
     catch(err){
       console.log(err);
     }
-
+  }
     return (
       // Padding of the page contents
       <div className="cards">
@@ -187,5 +187,4 @@ export function Destination_Cards(props) {
       </div>
     );
   }
-
 export default Destination_Cards;
