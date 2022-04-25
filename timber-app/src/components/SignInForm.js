@@ -2,9 +2,11 @@ import { useState } from 'react';
 //import { useCookies } from 'universal-cookie';
 //import { useCookies } from 'react-cookie';
 import Cookies from 'js-cookie';
+import { useNavigate } from 'react-router-dom';
 
 export function SignInForm() {
 
+    const navigate = useNavigate();
     //here's a cookie to be used elsewhere.
     //const [cookies, setCookie] = useCookies(['name']);
     // States for registration
@@ -40,7 +42,9 @@ export function SignInForm() {
             if (name === 'mg' && password === 'mg') {
                 setSignedIn(true);
                 //setCookie('name', name);
-                Cookies.set('name', name, { expires: 0.0007 });
+                Cookies.set('name', name, { expires: 0.0004 });
+                window.location.replace('/');
+                navigate('/');
             }
             else {
                 setError(true);
