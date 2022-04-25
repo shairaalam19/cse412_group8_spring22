@@ -24,7 +24,7 @@ function App() {
                     <Route path='/sign-up' element={<Sign_up />} />
                 </Routes>
             </Router>
-            </CookiesProvider>
+        </CookiesProvider> 
     );
 }
 

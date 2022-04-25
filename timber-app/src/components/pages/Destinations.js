@@ -16,6 +16,7 @@ export function Destinations(destination) {
         setDestinationData({
           destination_name: response.data.destinations[destination_name].destination_destination_name,
         });
+        console.log(destinationData);
       }
       catch(err){
         console.log(err);
