@@ -39,13 +39,26 @@ function Navbar() {
             );
     }
 
-    const showLogOff = () => {
+    /*const showLogOff = () => {
         return (
             <Link to='/sign-up' className='btn--outline' onClick={closeMobileMenu}
                 style={{ display: Cookies.get('name') != null ? '' : 'none', }}>
                 Log Off (Logged in!)
             </Link>
 
+        );
+    }*/
+    const handleLogOff = () => {
+        Cookies.remove('name');
+        window.location.reload();
+    }
+
+    const showLogOff = () => {
+        return (
+            <button onClick={handleLogOff}
+                style={{ display: Cookies.get('name') != null ? 'btn--outline' : 'none'}}>
+                Log Off
+            </button>
         );
     }
 
