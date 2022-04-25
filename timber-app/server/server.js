@@ -102,6 +102,7 @@ app.get("/api/destinations", async (req, res) => {
         console.error(err.message);
     }
 });
+
 //add one new destination to the database
 app.post("/api/destinations", async (req, res) => {
     try {
@@ -344,6 +345,19 @@ app.post("/api/trails", async (req, res) => {
     }
 });
 
+//add new trail based on destination name
+app.post("/api/newtrails/", async (req, res) => {
+    try{
+        const result = await pool.query("INSERT INTO has_trail(trail_name, destination_name) VALUES ($1,$2) RETURNING *", [req.body.trail_name, req.body.destination_name]);
+        res.status(200).json({
+            status:"success",
+            hiker: result.rows[0],
+         });
+    }catch(err){
+        console.error(err.message);
+    }
+});
+
 //finds location address based on the destination name
 app.get("/api/location/address", async (req, res)=> {
     try{    //type being either by state, city, zipcode
@@ -354,6 +368,22 @@ app.get("/api/location/address", async (req, res)=> {
             location: result.rows
         });
     }catch(err){
+        console.error(err.message);
+    }
+});
+
+//get one destination from database
+//http://localhost:5000/api/destinations/search/one/?val=Grand
+app.get("/api/destinations/search/one", async (req, res) => {
+    try {
+        const{val}=req.query;
+        const result = await pool.query("SELECT destination_name FROM destination WHERE destination_name = $1", [val]);
+            res.status(200).json({
+            status:"success",
+            destinations: result.rows
+        });
+    }
+    catch (err) {
         console.error(err.message);
     }
 });

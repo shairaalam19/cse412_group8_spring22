@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Cookies from 'js-cookie';
 import { useNavigate } from 'react-router-dom';
 import "./Cards.css";
-import DestinationAPI from "../apis/destinationAPI";
+import GenericAPI from "../apis/GenericAPI";
 
 export function DestinationForm() {
 
@@ -55,31 +55,49 @@ export function DestinationForm() {
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		if (destinationName === '' || trailName === '' || location === '' || climate === '') {
+		if (destinationName === '' || trailName === '' /*|| location === '' || climate === ''*/) {
 			setError(true);
 		}
 		else {
-			//add destination into database
-			const addDestination = async () => {
-                try{
-                    const result = await DestinationAPI.post("/", 
-                      {  
-                        destination_name:destinationName
-                      }
-                  )
-                  console.log(result);
-                }catch(err){
-                  console.log(err);
-                }
-              }
-            addDestination();
+			//first check if destination exists already
 
-			//add trail
+            const CheckDestination = async (e) => {
+              try{
+				//retrieve size of destination table
+                const results = await fetch(`http://localhost:5000/api/destinations/search/one/?val=${destinationName}`);
+                const parseResults = await results.json();
+				const num = parseResults.destinations.length;
+
+				//if there is no match, destination does NOT exist
+				if(num==0){
+					//add new destination into database
+					const addDestination = async () => {
+						try{
+							const result = await GenericAPI.post("/destinations/", 
+							{  
+								destination_name:destinationName
+							}
+						)
+						console.log(result); //success
+						}
+						catch(err){
+						console.log(err);
+						}
+					}
+					addDestination();
+				}
+              }catch(err){
+                console.log(err);
+              }
+            }
+           CheckDestination();
+
+			//add trail based on destination name
 			const addTrail = async () => {
                 try{
-                    const result = await DestinationAPI.post("/", 
+                    const result = await GenericAPI.post("/trails/", 
                     {  
-                        destination_name: destinationName
+						trail_name: trailName //req.body
                     }
                   )
                   console.log(result);
@@ -88,6 +106,27 @@ export function DestinationForm() {
                 }
               }
             addTrail();
+
+			//add trail to destination relationship
+			const addTrailDestinationRel = async () => {
+				try{
+					const result = await GenericAPI.post("/newtrails/", 
+					{  
+						trail_name: trailName, //req.body
+						destination_name: destinationName
+					}
+				)
+				console.log(result);
+				}catch(err){
+				console.log(err);
+				}
+			}
+			addTrailDestinationRel();	
+			
+			//add location
+			
+
+
 
 
 
