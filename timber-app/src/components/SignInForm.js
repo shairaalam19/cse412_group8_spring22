@@ -42,7 +42,8 @@ export function SignInForm() {
             if (name === 'mg' && password === 'mg') {
                 setSignedIn(true);
                 //setCookie('name', name);
-                Cookies.set('name', name, { expires: 0.0004 });
+                Cookies.set('name', name);
+                // Cookies.set('id', id);
                 window.location.replace('/');
                 navigate('/');
             }
