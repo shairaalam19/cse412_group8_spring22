@@ -24,8 +24,9 @@ export function Destination_Cards(props) {
   function card(destination){
     var trails_string = "";
     for(var i = 0; i < destination.trails.length-1; i++){
-      trails_string = trails_string + destination.trails[i] + ", ";
+      trails_string = trails_string + destination.trails[i] + ",\t";
     }
+    
     trails_string = trails_string + destination.trails[destination.trails.length-1];
 
     return (
@@ -78,11 +79,20 @@ export function Destination_Cards(props) {
         const contents = {
           destinations: []
         }; 
-        const trails_val = ['a', 'b', 'c'];
+        
         for(var i = 0; i < parseResults.destinations.length; i++){
+          const destName = parseResults.destinations[i].destination_name;
+          const trails = await fetch(`http://localhost:5000/api/trails/search/?destination_name=${destName}`);
+          const trailResults = await trails.json();
+          
+          var trailArray = [];
+          for(var j = 0; j < trailResults.trails.length; j++){
+            trailArray[j] = trailResults.trails[j].trail_name;
+          }
+
           contents.destinations.push({
             destination: parseResults.destinations[i].destination_name,
-            trails: trails_val, 
+            trails: trailArray, 
             accessibility: "accessibility",
             location: "location",
             climate: "climate"
@@ -102,11 +112,20 @@ export function Destination_Cards(props) {
         const contents = {
           destinations: []
         }; 
-        const trails_val = ['a', 'b', 'c'];
+
         for(var i = 0; i < parseResults.destinations.length; i++){
+          const destName = parseResults.destinations[i].destination_name;
+          const trails = await fetch(`http://localhost:5000/api/trails/search/?destination_name=${destName}`);
+          const trailResults = await trails.json();
+          
+          var trailArray = [];
+          for(var j = 0; j < trailResults.trails.length; j++){
+            trailArray[j] = trailResults.trails[j].trail_name;
+          }
+
           contents.destinations.push({
             destination: parseResults.destinations[i].destination_name,
-            trails: trails_val, 
+            trails: trailArray, 
             accessibility: "accessibility",
             location: "location",
             climate: "climate"
@@ -125,11 +144,20 @@ export function Destination_Cards(props) {
         const contents = {
           destinations: []
         }; 
-        const trails_val = ['a', 'b', 'c'];
+
         for(var i = 0; i < parseResults.destinations.length; i++){
+          const destName = parseResults.destinations[i].destination_name;
+          const trails = await fetch(`http://localhost:5000/api/trails/search/?destination_name=${destName}`);
+          const trailResults = await trails.json();
+          
+          var trailArray = [];
+          for(var j = 0; j < trailResults.trails.length; j++){
+            trailArray[j] = trailResults.trails[j].trail_name;
+          }
+
           contents.destinations.push({
             destination: parseResults.destinations[i].destination_name,
-            trails: trails_val, 
+            trails: trailArray, 
             accessibility: "accessibility",
             location: "location",
             climate: "climate"
