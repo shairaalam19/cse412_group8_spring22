@@ -205,7 +205,7 @@ CREATE TABLE favorites (
 INSERT INTO favorites (hiker_userid,destination_name) VALUES(1,'Grand Canyon');
 INSERT INTO favorites (hiker_userid,destination_name) VALUES(2,'Zion National Park');
 INSERT INTO favorites (hiker_userid,destination_name) VALUES(3,'Camelback Mountain');
-INSERT INTO favorites (hiker_userid,destination_name) VALUES(3,'Grand Canyon ');
+INSERT INTO favorites (hiker_userid,destination_name) VALUES(3,'Grand Canyon');
 INSERT INTO favorites (hiker_userid,destination_name) VALUES(4,'Zion National Park');
 INSERT INTO favorites (hiker_userid,destination_name) VALUES(4,'Camelback Mountain');
 INSERT INTO favorites (hiker_userid,destination_name) VALUES(4,'Grand Canyon');
@@ -270,4 +270,4 @@ INSERT INTO has_trail(trail_name,destination_name) VALUES ('Enchanted Rock Summi
 INSERT INTO has_trail(trail_name,destination_name) VALUES ('Ryan Mountain Trail','Joshua Tree National Park');
 INSERT INTO has_trail(trail_name,destination_name) VALUES ('Upper Yosemite Falls Trail','Yosemite National Park');
 
-/*import csv to pgadmin/
+/*import csv to pgadmin*/
