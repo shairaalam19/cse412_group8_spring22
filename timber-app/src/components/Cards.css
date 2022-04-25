@@ -6,8 +6,6 @@
   .cards > h1 {
     text-align: center;
   }
-
-
   
   .cards__container {
     display: flex;
@@ -150,6 +148,36 @@
     text-decoration: none;
   }
 
+  .center {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    max-width: 1120px;
+    width: 90%;
+    margin: 20px auto;
+  }
+
+  #searchbar
+{
+    height:50px;
+    width: 400px;
+    font-size:12pt;
+}
+
+#searchbutton{
+  color: white;
+  background-color: darkcyan;
+  border: none;
+  height:50px;
+  width: 100px;
+  font-size:12pt;
+}
+
+#searchOption{
+  height: 50px;
+  font-size: 12pt;
+}
+
   @media only screen and (min-width: 1200px) {
     .content__blog__container {
       width: 84%;
@@ -167,4 +195,6 @@
       margin-bottom: 2rem;
     }
   }
+
+
   

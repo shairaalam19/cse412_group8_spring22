@@ -31,13 +31,13 @@ CREATE TABLE hiker (
 );
 
 INSERT INTO hiker(hiker_userid, hiker_username, hiker_password, hiker_state) 
-VALUES(1, 'shairaalam', 'shairapw', 'tx');
+VALUES(1, 'shairaalam', 'shairapw', 'TX');
 INSERT INTO hiker(hiker_userid, hiker_username, hiker_password, hiker_state) 
-VALUES(2, 'geneaguas', 'genepw', 'ca');
+VALUES(2, 'geneaguas', 'genepw', 'CA');
 INSERT INTO hiker(hiker_userid, hiker_username, hiker_password, hiker_state) 
-VALUES(3, 'arianabui', 'shairapw', 'az');
+VALUES(3, 'arianabui', 'shairapw', 'AZ');
 INSERT INTO hiker(hiker_userid, hiker_username, hiker_password, hiker_state) 
-VALUES(4, 'airasanagustin', 'airapw', 'fl');
+VALUES(4, 'airasanagustin', 'airapw', 'FL');
 
 /* Trail Data */
 CREATE TABLE trail (

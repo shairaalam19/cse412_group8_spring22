@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment, useState } from "react";
 import CardItem from "./CardItem";
 import "./Cards.css";
 import {Button} from './Button';
@@ -12,7 +12,7 @@ const list = [
 ]
 
 export function Destination_Cards(props) {
-
+  
   function card(destination){
     return (
       <ul className="cards__items">
@@ -47,11 +47,58 @@ export function Destination_Cards(props) {
     );
   }
 
+  const[searchInput, setInput] = useState("");
+  //const[destOutput, setDestinations] = useState([]);
+
+  const SearchDestination = async(e) =>{
+    e.preventDefault();
+    var sel = document.getElementById('searchOption');
+    try{
+      if(sel.value=="name"){
+        const results = await fetch(`http://localhost:5000/api/destinations/search/?destination_name=${searchInput}`);
+        const parseResults = await results.json();
+        console.log(parseResults.destinations);
+      }
+      else if(sel.value=="state"){
+        const results = await fetch(`http://localhost:5000/api/destinations/search/filter/state/?val=${searchInput}`);
+        const parseResults = await results.json();
+        console.log(parseResults.destinations);
+      }
+      else{
+        const results = await fetch(`http://localhost:5000/api/destinations/search/filter/zipcode/?val=${searchInput}`);
+        const parseResults = await results.json();
+        console.log(parseResults.destinations);
+      }
+    }catch(err){
+      console.error(err.message)
+    }
+  }
+
   return (
     // Padding of the page contents 
     <div className="cards">
       <h1>Explore your next destination!</h1>
+
+      <Fragment>
+      <div className="center">
+        <form onSubmit={SearchDestination}> 
+        <input id="searchbar" type="text" name="destination" placeholder="Enter a state abbrev, zipcode, or destination name..."
+        value={searchInput} onChange={e=>setInput(e.target.value)}></input>
+
+          <select id="searchOption" className="searchOptions">
+            <option value="name">Name</option>
+            <option value="state">State</option>
+            <option value="zipcode">Zipcode</option>
+          </select>
+
+        <button id="searchbutton" className="btn-success">Search</button>
+        
+        </form>
+      </div>
+      </Fragment>
+
       {/* structure of the cards that are being displayed */}
+
       <div className="cards__container">
         <div className="cards__wrapper">
           {/* <ul className="cards__items"> */}

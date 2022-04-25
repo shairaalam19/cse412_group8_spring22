@@ -220,7 +220,7 @@ app.get("/api/destinations/search", async (req, res)=> {
 });
 
 //find all trails that belong to a similar destination name (input)
-app.get("/api/hastrails/search", async (req, res)=> {
+app.get("/api/trails/search/", async (req, res)=> {
     try{
         const { destination_name } = req.query;
         const result = await pool.query("SELECT trail_name FROM has_trail WHERE destination_name ILIKE $1", [`%${destination_name}%`])
@@ -236,7 +236,7 @@ app.get("/api/hastrails/search", async (req, res)=> {
 
 //find all trails filtered by length , difficulty, and elevation gain
 //example: http://localhost:5000/api/trails/search/?minLength=0&maxLength=5
-app.get("/api/trails/search/filter", async (req, res)=> {
+app.get("/api/trails/search/filterall", async (req, res)=> {
     try{ 
         const { minLength, maxLength, difficulty, minGain, maxGain, orderBy } = req.query;
         const result = await pool.query("SELECT trail_name, trail_length, trail_difficulty, trail_elevationgain FROM trail WHERE trail_length > $1 AND trail_length < $2 AND trail_difficulty = $3 AND trail_elevationgain>$4 AND trail_elevationgain<$5 ORDER BY $6 ASC", [minLength,maxLength, difficulty, minGain,maxGain,orderBy]);
