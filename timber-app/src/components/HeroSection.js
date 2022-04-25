@@ -40,7 +40,7 @@ export function HeroSection() {
           className='btns'
           buttonStyle='btn--primary'
           buttonSize='btn--large'
-          path='/destination'
+          path='/destinations'
           // onClick={console.log('hey')}
         >
           SEE DESTINATIONS <i className='far fa-play-circle' />
