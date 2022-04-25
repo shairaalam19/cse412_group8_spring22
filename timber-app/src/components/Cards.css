@@ -164,6 +164,12 @@
     font-size:12pt;
 }
 
+#forminput{
+  height:40px;
+  width: 400px;
+  font-size:18pt;
+}
+
 #searchbutton{
   color: white;
   background-color: darkcyan;

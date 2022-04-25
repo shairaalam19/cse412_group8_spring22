@@ -4,6 +4,8 @@ import HikerAPI from "../apis/HikerAPI";
 
 export function UserForm() {
 
+    //state for user count
+    const[hikerCount, setHikerCount] = useState(0);
     // States for registration
     const [name, setName] = useState('');
     //const [email, setEmail] = useState('');
@@ -38,11 +40,24 @@ export function UserForm() {
         if (name === '' || state === '' || password === '') {
             setError(true);
         } else {
+
+            //get total hiker count
+            const GetCount = async (e) => {
+              try{
+                const results = await fetch("http://localhost:5000/api/hikers");
+                const parseResults = await results.json();
+                setHikerCount(parseResults.hikers.length);
+              }catch(err){
+                console.log(err);
+              }
+            }
+            GetCount();
+
             const addHikers = async () => {
                 try{
                     const result = await HikerAPI.post("/", 
                       {  // vvvv this is the format for INSERTING data into the our database
-                        hiker_userid: 10000, //NEEDS TO BE RANDOMIZED
+                        hiker_userid: hikerCount+1, 
                         hiker_username: name,
                         hiker_password: password,
                         hiker_state: state
