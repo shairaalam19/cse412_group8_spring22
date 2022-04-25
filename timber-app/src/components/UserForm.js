@@ -1,5 +1,6 @@
 
 import { useState } from 'react';
+import Cookies from 'js-cookie';
 import HikerAPI from "../apis/HikerAPI";
 
 export function UserForm() {
@@ -41,20 +42,24 @@ export function UserForm() {
             setError(true);
         } else {
 
-            //get total hiker count
+            var addedSuccessfully = false;
+            
+            //get total hiker count to create new id for new user
             const GetCount = async (e) => {
-              try{
-                const results = await fetch("http://localhost:5000/api/hikers");
-                const parseResults = await results.json();
-                setHikerCount(parseResults.hikers.length);
-              }catch(err){
-                console.log(err);
-              }
-            }
-            GetCount();
+                  try{
+                    const results = await fetch("http://localhost:5000/api/hikers");
+                    const parseResults = await results.json();
+                    setHikerCount(parseResults.hikers.length);
+                  }catch(err){
+                    console.log(err);
+                  }
+                }
+                GetCount();
 
+              //add hiker to database
             const addHikers = async () => {
-                try{
+                console.log("count: " + hikerCount);
+                try{ //successful
                     const result = await HikerAPI.post("/", 
                       {  // vvvv this is the format for INSERTING data into the our database
                         hiker_userid: hikerCount+1, 
@@ -64,14 +69,19 @@ export function UserForm() {
                       }
                   )
                   console.log(result);
-                }catch(err){
+                  Cookies.set('userid', hikerCount, { expires: 1 })
+                  addedSuccessfully=true;
+                }catch(err){ //error
                   console.log(err);
                 }
               }
               addHikers();
 
-            setSubmitted(true);
-            setError(false);
+              console.log("added: " + addedSuccessfully);
+              setSubmitted(true);
+              setError(false);
+
+            console.log("Cookies id set to: " + Cookies.get('userid'));
         }
     };
 
