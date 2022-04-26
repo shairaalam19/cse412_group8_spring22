@@ -10,6 +10,6 @@
     "\\timber-app\\src\\components",
     "\\timber-app\\src\\components\\pages"
   ],
-  "SelectedNode": "\\timber-app\\server\\server.js",
+  "SelectedNode": "\\timber-app\\src\\components\\pages\\DestinationDetails.js",
   "PreviewInSolutionExplorer": false
 }
