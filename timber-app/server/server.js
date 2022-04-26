@@ -404,3 +404,20 @@ app.get("/api/hikers/verify/login/", async (req, res) => {
         console.error(err.message);
     }
 });
+
+//verify if user is in the database based on username and password
+//http://localhost:5000/api/favorites/verify/this/?userid=1&dname=Grand Canyon
+app.get("/api/favorites/verify/this", async (req, res) => {
+    try {
+        const{ userid, dname }=req.query;
+        const result = await pool.query("SELECT * FROM favorites WHERE hiker_userid = $1 AND destination_name = $2", [userid, dname]);
+            res.status(200).json({
+            status:"success",
+            size: result.rows.length,
+            hiker: result.rows
+        });
+    }
+    catch (err) {
+        console.error(err.message);
+    }
+});
