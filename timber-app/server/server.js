@@ -387,3 +387,20 @@ app.get("/api/destinations/search/one", async (req, res) => {
         console.error(err.message);
     }
 });
+
+//verify if user is in the database based on username and password
+//http://localhost:5000/api/hikers/verify/?username=abc&?password=abcpw
+app.get("/api/hikers/verify/login/", async (req, res) => {
+    try {
+        const{ username, password }=req.query;
+        const result = await pool.query("SELECT * FROM hiker WHERE hiker_username = $1 AND hiker_password = $2", [username, password]);
+            res.status(200).json({
+            status:"success",
+            size: result.rows.length,
+            hiker: result.rows
+        });
+    }
+    catch (err) {
+        console.error(err.message);
+    }
+});

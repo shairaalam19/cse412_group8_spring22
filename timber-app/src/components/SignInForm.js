@@ -39,17 +39,33 @@ export function SignInForm() {
         } else {
             setError(false);
             //Now here we have to set a cookie to contain the user's name. This is a skeletal function: update the below code with a SQL query that matches the username and password together, and then set the cookie if that is valid.
-            if (name === 'mg' && password === 'mg') {
-                setSignedIn(true);
-                //setCookie('name', name);
-                Cookies.set('name', name);
-                // Cookies.set('id', id);
-                window.location.replace('/');
-                navigate('/');
+            let loginSuccessfully = false;
+            const AttemptLogin = async(e) => {
+                try{
+                    const results = await fetch(`http://localhost:5000/api/hikers/verify/login/?username=${name}&password=${password}`);
+                    const parseResults = await results.json();
+                    const size = parseResults.size;
+                    if(size == 1){
+                        loginSuccessfully=true;
+                        Cookies.set('userid', parseResults.hiker[0].hiker_userid);
+                    }
+                    else
+                        loginSuccessfully=false;
+                }catch(err){
+                    console.log(err);
+                }
             }
-            else {
-                setError(true);
-            }
+            
+            AttemptLogin().then(() => {
+                console.log("login: " + loginSuccessfully);
+                if(loginSuccessfully){
+                    setSignedIn(true);
+                    window.location.replace('/');
+                    navigate('/');
+                }else{
+                    setError(true);
+                }
+            })
         }
     };
 
