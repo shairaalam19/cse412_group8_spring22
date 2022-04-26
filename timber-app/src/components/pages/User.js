@@ -65,22 +65,16 @@ export function User(user) {
             try{
                 const response = await FavoriteAPI.get("/" + id);
                 var list = response.data.favorites;
-                // console.log(list)
+                // console.log(response.data)
                 
                 var favorites_string = [];
-                for(var i = 0; i < list.length-1; i++){
+                for(var i = 0; i < list.length; i++){
                     favorites_string.push(
                         <>
                             {list[i].destination_name}<br></br>
                         </>
                     )
                 }
-                favorites_string.push(
-                    <>
-                        {list[list.length-1].destination_name}
-                    </>
-                )
-    
                 setFavorites(favorites_string);
             }
             catch(err){
