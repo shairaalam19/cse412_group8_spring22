@@ -27,16 +27,15 @@ function CardItem(props) {
       console.log("Liked " + props.destination);
 
       // ==================== INSERT FAVORITES TO DATABASE ===============================
-      //DUMMY VAL
-      const userid_dummy = 1;
-      const destination_dummy = "Grand Canyon";
+      const userid = Cookies.get("userid");
+      const destination = props.destination;
       
       const addFavorites = async () => {
         try{
             const result = await FavoriteAPI.post("/", 
               {  // vvvv this is the format for INSERTING data into the our database
-                hiker_userid: userid_dummy,
-                destination_name: destination_dummy
+                hiker_userid: userid,
+                destination_name: destination
               }
           )
           console.log(result);
@@ -54,16 +53,15 @@ function CardItem(props) {
       console.log("Unliked " + props.destination);
 
       // ==================== REMOVE FAVORITES FROM DATABASE ===============================
-      //DUMMY VAL
-      const userid_dummy = 1;
-      const destination_dummy = "Grand Canyon";
+      const userid = Cookies.get("userid");
+      const destination = props.destination;
 
-      console.log("user to delete: " + userid_dummy);
-      console.log("destination to delete: " + destination_dummy);
+      console.log("user to delete: " + userid);
+      console.log("destination to delete: " + destination);
       
       const removeFavorites = async () => {
         try{ //two parameters passed in the url for DELETION
-            const result = await FavoriteAPI.delete(`/${userid_dummy}&${destination_dummy}`) 
+            const result = await FavoriteAPI.delete(`/${userid}&${destination}`) 
           console.log(result);
         }catch(err){
           console.log(err);
