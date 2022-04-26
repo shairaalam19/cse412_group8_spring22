@@ -3,6 +3,7 @@ import FavoriteAPI from "../apis/FavoriteAPI";
 import { Link, useLocation } from "react-router-dom";
 import "./Button.css";
 import Cookies from 'js-cookie';
+import Modal from 'react-modal';
 
 function CardItem(props) {
     const likeState = {
@@ -18,6 +19,19 @@ function CardItem(props) {
     const [like, setLike] = useState(true);
     const [likeText, setLikeText] = useState(likeState.notLike);
     const [likeColor, setLikeColor] = useState(colorState.notLike);
+    const [modalIsOpen, setIsOpen] = useState(false);
+
+    function openModal() {
+        setIsOpen(true);
+    }
+
+    function afterOpenModal() {
+
+    }
+
+    function closeModal() {
+        setIsOpen(false);
+    }
 
     function clickLike() {
         setLike(!like);
@@ -94,7 +108,23 @@ function CardItem(props) {
                         <h5 className="cards__item__location">{props.location}</h5>
                         <h5 className="cards__item__climate">{props.climate}</h5>
                     </Link>
+                    <button className="cards__item__button" className={likeColor} onClick={() => openModal()}>Show Details</button>
                     <button className="cards__item__button" className={likeColor} onClick={() => clickLike()}>{likeText}</button>
+                    <Modal
+                        isOpen={modalIsOpen}
+                        onAfterOpen={afterOpenModal}
+                        onRequestClose={closeModal}
+                        contentLabel="Modal"
+                    >
+                        <h5>Details</h5>
+                        <button onClick={closeModal}>close</button>
+                        <div>
+                            <h4 className="cards__item__trails">{props.trails}</h4>
+                            <h5 className="cards__item__accessibility">{props.accessibility}</h5>
+                            <h5 className="cards__item__location">{props.location}</h5>
+                            <h5 className="cards__item__climate">{props.climate}</h5>
+                        </div>
+                    </Modal>
                 </div>
             </li>
         </>
