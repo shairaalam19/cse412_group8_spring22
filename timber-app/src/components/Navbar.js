@@ -30,7 +30,7 @@ function Navbar() {
     window.addEventListener('resize', showButton);
     // {/* button && <Button buttonStyle='btn--outline' path='/sign-up'> LOGIN </Button> */}
     const showLogin = () => {
-        console.log(Cookies.get('userid'));
+       // console.log(Cookies.get('userid'));
         return (
             <Link to='/sign-up' className='btn--outline' onClick={closeMobileMenu}
                 style={{ display: Cookies.get('userid') == null ? '' : 'none', }}>
@@ -56,7 +56,7 @@ function Navbar() {
     }
 
     const showLogOff = () => {
-        console.log(Cookies.get('userid'));
+        //console.log(Cookies.get('userid'));
         return (
             <button onClick={handleLogOff}
                 style={{ display: Cookies.get('userid') != null ? 'btn--outline' : 'none'}}>
