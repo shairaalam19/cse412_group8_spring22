@@ -414,10 +414,87 @@ app.get("/api/favorites/verify/this", async (req, res) => {
             res.status(200).json({
             status:"success",
             size: result.rows.length,
-            hiker: result.rows
+            favorites: result.rows
         });
     }
     catch (err) {
         console.error(err.message);
     }
 });
+
+
+//ADD NEW DESTINATION :: http://localhost:5000/api/insert/destination/here/?dname=New Destination
+app.get("/api/insert/destination/here", async (req, res) => {
+    try {
+        const{ dname }=req.query;
+        const result = await pool.query("INSERT INTO destination(destination_name) VALUES ($1) RETURNING *", [dname]);
+            res.status(200).json({
+            status:"success",
+            data: result.rows[0]
+        });
+    }
+    catch (err) {
+        console.error(err.message);
+    }
+});
+
+//ADD NEW TRAIL :: http://localhost:5000/api/insert/trail/here/?name=t&length=1&hours=1&difficulty=easy&gain=100
+app.get("/api/insert/trail/here", async (req, res) => {
+    try {
+        const{ name, length, hours, difficulty, gain }=req.query;
+        const result = await pool.query("INSERT INTO trail(trail_name,trail_length,trail_hoursOpen,trail_difficulty,trail_elevationGain) VALUES ($1,$2,$3,$4,$5) RETURNING *", [name, length, hours, difficulty, gain]);
+            res.status(200).json({
+            status:"success",
+            data: result.rows[0]
+        });
+    }
+    catch (err) {
+        console.error(err.message);
+    }
+});
+
+//ADD NEW ACCESSIBILITY :: http://localhost:5000/api/insert/accessibility/here/?tname=New Trail&pet=Yes&park=20
+app.get("/api/insert/accessibility/here", async (req, res) => {
+    try {
+        const{ tname, pet, park }=req.query;
+        const result = await pool.query("INSERT INTO accessibility(trail_name,acc_petFriendly,acc_parkingCost) VALUES ($1,$2,$3) RETURNING *", [tname, pet, park]);
+            res.status(200).json({
+            status:"success",
+            data: result.rows[0]
+        });
+    }
+    catch (err) {
+        console.error(err.message);
+    }
+});
+
+//ADD NEW LOCATION :: http://localhost:5000/api/insert/location/here/?coordinate=(0,1)&state=AZ&city=Gilbert&zipcode=85233&address=123 Duck St
+app.get("/api/insert/location/here", async (req, res) => {
+    try {
+        const{ coordinate, state, city, zipcode, address }=req.query;
+        const result = await pool.query("INSERT INTO location(location_coordinate,location_state,location_city,location_zipcode,location_address) VALUES ($1,$2,$3,$4,$5) RETURNING *", [coordinate, state, city, zipcode, address]);
+            res.status(200).json({
+            status:"success",
+            data: result.rows[0]
+        });
+    }
+    catch (err) {
+        console.error(err.message);
+    }
+});
+
+//ADD NEW CLIMATE :: http://localhost:5000/api/insert/climate/here/?coordinate=(1,1)&season=summer&temp=100
+app.get("/api/insert/climate/here", async (req, res) => {
+    try {
+        const{ coordinate, season, temp }=req.query;
+        const result = await pool.query("INSERT INTO climate(location_coordinate,climate_season,climate_temp) VALUES ($1,$2,$3) RETURNING *", [coordinate, season, temp]);
+            res.status(200).json({
+            status:"success",
+            data: result.rows[0]
+        });
+    }
+    catch (err) {
+        console.error(err.message);
+    }
+});
+
