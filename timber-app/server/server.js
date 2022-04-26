@@ -362,7 +362,7 @@ app.post("/api/newtrails/", async (req, res) => {
 app.get("/api/location/address", async (req, res)=> {
     try{    //type being either by state, city, zipcode
         const {val} = req.query;
-        const result = await pool.query("select location.location_address from destination, location, is_located where destination.destination_name=is_located.destination_name AND is_located.location_coordinate = location.location_coordinate AND is_located.destination_name=$1", [val])
+        const result = await pool.query("select location.location_address, location.location_coordinate from destination, location, is_located where destination.destination_name=is_located.destination_name AND is_located.location_coordinate = location.location_coordinate AND is_located.destination_name=$1", [val])
         res.status(200).json({
             status:"success",
             location: result.rows

@@ -28,10 +28,11 @@ export function Destination_Cards(props) {
           // src="images/img-9.jpg"
           // text="Explore the hidden waterfall deep inside the Amazon Jungle"
           title={destination.destination}
+          destination={destination.destination}
           trails={trails_string}
           // accessibility={destination.accessibility}
           location={"Address: " + destination.location}
-          climate={destination.climate}
+          climate={"Climate: " + destination.climate}
           label="Adventure"
           path="/destinations"
         />
@@ -69,7 +70,7 @@ export function Destination_Cards(props) {
         const contents = {
           destinations: []
         }; 
-        
+      
         for(var i = 0; i < parseResults.destinations.length; i++){
           //get destination name
           const destName = parseResults.destinations[i].destination_name;
@@ -80,7 +81,13 @@ export function Destination_Cards(props) {
           const location = await fetch(`http://localhost:5000/api/location/address/?val=${destName}`);
           const locationResults = await location.json();
           const locationString = locationResults.location[0].location_address;
-
+          
+          //get climate
+          const location_coordinate = locationResults.location[0].location_coordinate;
+          const climate = await fetch(`http://localhost:5000/api/locations/climate/?val=${location_coordinate}`);
+          const climateResults = await climate.json();
+          const climateString = climateResults.climate[0].climate_temp;
+          
           //get trails associated with destination
           var trailArray = [];
           for(var j = 0; j < trailResults.trails.length; j++){
@@ -93,7 +100,7 @@ export function Destination_Cards(props) {
             trails: trailArray, 
             accessibility: "accessibility",
             location: locationString,
-            climate: "climate"
+            climate: climateString
           });
         }
         // console.log("contents: ");
@@ -122,6 +129,12 @@ export function Destination_Cards(props) {
           const locationResults = await location.json();
           const locationString = locationResults.location[0].location_address;
 
+          //get climate
+          const location_coordinate = locationResults.location[0].location_coordinate;
+          const climate = await fetch(`http://localhost:5000/api/locations/climate/?val=${location_coordinate}`);
+          const climateResults = await climate.json();
+          const climateString = climateResults.climate[0].climate_temp;
+
           //get trails associated with destination
           var trailArray = [];
           for(var j = 0; j < trailResults.trails.length; j++){
@@ -134,7 +147,7 @@ export function Destination_Cards(props) {
             trails: trailArray, 
             accessibility: "accessibility",
             location: locationString,
-            climate: "climate"
+            climate: climateString
           });
         }
         // console.log("contents: ");
@@ -162,6 +175,12 @@ export function Destination_Cards(props) {
           const locationResults = await location.json();
           const locationString = locationResults.location[0].location_address;
 
+          //get climate
+          const location_coordinate = locationResults.location[0].location_coordinate;
+          const climate = await fetch(`http://localhost:5000/api/locations/climate/?val=${location_coordinate}`);
+          const climateResults = await climate.json();
+          const climateString = climateResults.climate[0].climate_temp;
+
           //get trails associated with destination
           var trailArray = [];
           for(var j = 0; j < trailResults.trails.length; j++){
@@ -174,7 +193,7 @@ export function Destination_Cards(props) {
             trails: trailArray, 
             accessibility: "accessibility",
             location: locationString,
-            climate: "climate"
+            climate: climateString
           });
         }
 
