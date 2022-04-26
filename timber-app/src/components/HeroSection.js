@@ -6,7 +6,7 @@ import Cookies from 'js-cookie';
 
 const renderWelcomeSignedIn = () => {
     return (
-        <h1 style={{ display: Cookies.get('name') != null ? '' : 'none', }}>
+        <h1 style={{ display: Cookies.get('userid') != null ? '' : 'none', }}>
             WELCOME TO TIMBER, {Cookies.get('name')}!
         </h1>
         );
@@ -14,7 +14,7 @@ const renderWelcomeSignedIn = () => {
 
 const renderWelcomeNoSign = () => {
     return (
-        <h1 style={{ display: Cookies.get('name') == null ? '' : 'none', }}>
+        <h1 style={{ display: Cookies.get('userid') == null ? '' : 'none', }}>
             WELCOME TO TIMBER!
         </h1>
         );
