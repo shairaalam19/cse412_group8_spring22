@@ -47,8 +47,8 @@ export function SignInForm() {
                     const size = parseResults.size;
                     if(size == 1){
                         loginSuccessfully = true;
-                        Cookies.set('name', name);
-                        Cookies.set('userid', parseResults.hiker[0].hiker_userid);
+                        Cookies.set('name', name, { expires: 1 });
+                        Cookies.set('userid', parseResults.hiker[0].hiker_userid, { expires: 1 });
                     }
                     else
                         loginSuccessfully=false;
