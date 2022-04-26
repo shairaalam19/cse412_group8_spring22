@@ -32,7 +32,7 @@ function Navbar() {
     const showLogin = () => {
         return (
             <Link to='/sign-up' className='btn--outline' onClick={closeMobileMenu}
-                style={{ display: Cookies.get('name') == null ? '' : 'none', }}>
+                style={{ display: Cookies.get('userid') == null ? '' : 'none', }}>
                 Log In (Not logged in!)
             </Link>
 
@@ -49,14 +49,14 @@ function Navbar() {
         );
     }*/
     const handleLogOff = () => {
-        Cookies.remove('name');
+        Cookies.remove('userid');
         window.location.reload();
     }
 
     const showLogOff = () => {
         return (
             <button onClick={handleLogOff}
-                style={{ display: Cookies.get('name') != null ? 'btn--outline' : 'none'}}>
+                style={{ display: Cookies.get('userid') != null ? 'btn--outline' : 'none'}}>
                 Log Off
             </button>
         );
