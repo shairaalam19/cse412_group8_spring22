@@ -46,7 +46,8 @@ export function SignInForm() {
                     const parseResults = await results.json();
                     const size = parseResults.size;
                     if(size == 1){
-                        loginSuccessfully=true;
+                        loginSuccessfully = true;
+                        Cookies.set('name', name);
                         Cookies.set('userid', parseResults.hiker[0].hiker_userid);
                     }
                     else
@@ -132,7 +133,7 @@ export function SignInForm() {
                 {errorMessage()}
                 {successMessage()}
             </div>
-
+            <br></br>
             {renderForm()}
 
         </div>

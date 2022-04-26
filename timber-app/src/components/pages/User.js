@@ -13,19 +13,31 @@ export function User(user) {
         hiker_password: "",
         hiker_state: ""
     });
+
+    const[allUsers, setAllUsers] = useState({})
+
     const [favorites, setFavorites] = useState("");
+
+    useEffect(() =>{
+        // console.log("userData: ")
+        // console.log(userData)
+        // console.log("allUsers: ")
+        // console.log(allUsers)
+    }, [])
     
     function getUserDetails(id){
         // var userID = 1; // connect to database to get user details
         const fetchData = async() => {
             try{
-                const response = await HikerAPI.get("/");
-                const users = response.data.hikers;
+                const response = await HikerAPI.get("/"+id);
+                // console.log(response)
+                const user = response.data.hiker;
+                // console.log(user);
                 setUserData({
-                    hiker_userid: response.data.hikers[id].hiker_userid,
-                    hiker_username: response.data.hikers[id].hiker_username,
-                    hiker_password: response.data.hikers[id].hiker_password,
-                    hiker_state: response.data.hikers[id].hiker_state.toUpperCase()
+                    hiker_userid: user.hiker_userid,
+                    hiker_username: user.hiker_username,
+                    hiker_password: user.hiker_password,
+                    hiker_state: user.hiker_state.toUpperCase()
                 });
             }
             catch(err){
@@ -53,21 +65,16 @@ export function User(user) {
             try{
                 const response = await FavoriteAPI.get("/" + id);
                 var list = response.data.favorites;
+                // console.log(response.data)
                 
                 var favorites_string = [];
-                for(var i = 0; i < list.length-1; i++){
+                for(var i = 0; i < list.length; i++){
                     favorites_string.push(
                         <>
                             {list[i].destination_name}<br></br>
                         </>
                     )
                 }
-                favorites_string.push(
-                    <>
-                        {list[list.length-1].destination_name}
-                    </>
-                )
-    
                 setFavorites(favorites_string);
             }
             catch(err){
@@ -85,16 +92,18 @@ export function User(user) {
             </>
         )
     }
+
+    // console.log(Cookies.get("userid"))
   
     return (
         <>
             <div className="user">
                 <h1>User Details</h1>
-                {getUserDetails(2)}
+                {getUserDetails(Cookies.get("userid"))}
             </div>
             <div className="user">
                 <h1>Favorites</h1>
-                {getUserFavorites(2)}
+                {getUserFavorites(Cookies.get("userid"))}
             </div>
         </>
     );
