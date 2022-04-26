@@ -45,44 +45,54 @@ export function UserForm() {
             var addedSuccessfully = false;
             
             //get total hiker count to create new id for new user
-            const GetCount = async (e) => {
-                  try{
-                    const results = await fetch("http://localhost:5000/api/hikers");
-                    const parseResults = await results.json();
-                    setHikerCount(parseResults.hikers.length);
-                  }catch(err){
-                    console.log(err);
-                  }
-                }
-                GetCount();
+            // async function GetCount() {
+            //       try{
+            //         const results = await fetch("http://localhost:5000/api/hikers");
+            //         const parseResults = await results.json();
+            //         setHikerCount(parseResults.hikers.length);
+            //       }catch(err){
+            //         console.log(err);
+            //       }
+            // }
+            // GetCount();
+
+            // const randomNum = Math.floor(Math.random()*99999);
+            // setHikerCount(randomNum);
+            // console.log("Initial count: " + hikerCount);
 
               //add hiker to database
-            const addHikers = async () => {
-                console.log("count: " + hikerCount);
+              const addHikers = async (e) => {
                 try{ //successful
                     const result = await HikerAPI.post("/", 
                       {  // vvvv this is the format for INSERTING data into the our database
-                        hiker_userid: hikerCount+1, 
+                        hiker_userid: Math.floor(Math.random()*99999), 
                         hiker_username: name,
                         hiker_password: password,
                         hiker_state: state
                       }
                   )
+                  const val_id = result.data.hiker.hiker_userid;
+                  Cookies.set('userid', val_id, { expires: 1 });
+                  setHikerCount(val_id);
                   console.log(result);
-                  Cookies.set('userid', hikerCount, { expires: 1 })
                   addedSuccessfully=true;
                 }catch(err){ //error
                   console.log(err);
                 }
               }
-              addHikers();
 
-              console.log("added: " + addedSuccessfully);
-              setSubmitted(true);
-              setError(false);
-
-            console.log("Cookies id set to: " + Cookies.get('userid'));
-        }
+              addHikers().then((checkHikers) => {
+                if(addedSuccessfully){
+                  setSubmitted(true);
+                  setError(false);
+                  console.log("Cookies id set to: " + Cookies.get('userid')); 
+                }else{
+                  setSubmitted(true);
+                  setError(false);
+                }
+        
+              });
+          }
     };
 
     // Showing success message
