@@ -167,7 +167,22 @@
 #forminput{
   height:40px;
   width: 400px;
-  font-size:18pt;
+  font-size:14pt;
+  margin: 10px;
+  padding: 5px;
+  opacity: 0.8;
+}
+
+#vid{
+  width: 100%;
+  display: flex;
+  flex-direction:column;
+  justify-content: center;
+  align-items: center;
+}
+
+#form-style{
+  background-color: white;
 }
 
 #searchbutton{
