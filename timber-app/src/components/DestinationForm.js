@@ -111,7 +111,7 @@ export function DestinationForm() {
 	//submit
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		if (destinationName === '' || trailName === '' /*|| location === '' || climate === ''*/) {
+		if (destinationName === '' || trailName === '' || location === '' || climate === '') {
 			setError(true);
 		}
 		else {
@@ -148,20 +148,29 @@ export function DestinationForm() {
             }
            CheckDestination();
 
-			//add trail based on destination name
+			//add new trail
 			const addTrail = async () => {
                 try{
-                    const result = await GenericAPI.post("/trails/", 
-                    {  
-						trail_name: trailName //req.body
-                    }
-                  )
-                  console.log(result);
+					const results = await fetch(`http://localhost:5000/api/insert/trail/here/?name=${trailName}&length=${trailLength}&hours=${trailHours}&difficulty=${trailDifficulty}&gain=${trailGain}`);
+                	const parseResults = await results.json();
+                  	console.log(parseResults);
                 }catch(err){
                   console.log(err);
                 }
               }
             addTrail();
+
+			//add accessibility
+			const addAccessibility = async () => {
+                try{
+					const results = await fetch(`http://localhost:5000/api/insert/accessibility/here/?tname=${trailName}&pet=${petFriendly}&park=${parkingCost}`);
+                	const parseResults = await results.json();
+                  	console.log(parseResults);
+                }catch(err){
+                  console.log(err);
+                }
+              }
+            addAccessibility();
 
 			//add trail to destination relationship
 			const addTrailDestinationRel = async () => {
@@ -180,12 +189,31 @@ export function DestinationForm() {
 			addTrailDestinationRel();	
 			
 			//add location
+			const addLocation = async () => {
+                try{
+					const results = await fetch(`http://localhost:5000/api/insert/location/here/?coordinate=${coordinate}&state=${state}&city=${city}&zipcode=${zipcode}&address=${location}`);
+                	const parseResults = await results.json();
+                  	console.log(parseResults);
+                }catch(err){
+                  console.log(err);
+                }
+              }
+            addLocation();
 
 
 			//add climate
+			const addClimate = async () => {
+                try{
+					const results = await fetch(`http://localhost:5000/api/insert/climate/here/?coordinate=${coordinate}&season=${climate}&temp=${temperature}`);
+                	const parseResults = await results.json();
+                  	console.log(parseResults);
+                }catch(err){
+                  console.log(err);
+                }
+              }
+            addClimate();
 
-
-
+			//immediately sets submit
 			setSubmitted(true);
 			setError(false);
 		}
@@ -232,14 +260,14 @@ export function DestinationForm() {
 						<h1 className="center">Add a Destination</h1>
 					</div>
 					<div className="center">
-						<input onChange={handleDestinationName} className="input" id="forminput" placeholder="Destination Name"
+						<input require onChange={handleDestinationName} className="input" id="forminput" placeholder="Destination Name"
 							value={destinationName} type="text" />
 					</div>
 
 
 					<h2 className="center">Trail</h2>
 					<div className="center">
-						<input onChange={handleTrailName} className="input" id="forminput" placeholder="Trail Name"
+						<input require onChange={handleTrailName} className="input" id="forminput" placeholder="Trail Name"
 							value={trailName} type="text" />
 						<input onChange={handleTrailLength} className="input" id="forminput" placeholder="Length (miles)"
 							value={trailLength} type="text" />
@@ -261,9 +289,9 @@ export function DestinationForm() {
 
 					<h2 className="center">Location</h2>
 					<div className="center">
-					<input onChange={handleLocation} className="input" id="forminput" placeholder="Location"
+					<input require onChange={handleLocation} className="input" id="forminput" placeholder="Location"
 							value={location} type="text" />
-					<input onChange={handleCoordinate} className="input" id="forminput" placeholder="Coordinate"
+					<input require onChange={handleCoordinate} className="input" id="forminput" placeholder="Coordinate"
 							value={coordinate} type="text" />
 					<input onChange={handleCity} className="input" id="forminput" placeholder="City"
 							value={city} type="text" />
