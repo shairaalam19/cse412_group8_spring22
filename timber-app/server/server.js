@@ -499,6 +499,21 @@ app.get("/api/insert/location/here", async (req, res) => {
     }
 });
 
+// //ADD NEW IS_LOCATION :: http://localhost:5000/api/insert/is_located/here/?name=destination_name&coordinate=location_coordinate
+// app.get("/api/insert/is_located/here", async (req, res) => {
+//     try {
+//         const{ name, coordinate }=req.query;
+//         const result = await pool.query("INSERT INTO is_located(destination_name,location_coordinate) VALUES ($1, $2) RETURNING *", [name, coordinate]);
+//             res.status(200).json({
+//             status:"success",
+//             data: result.rows[0]
+//         });
+//     }
+//     catch (err) {
+//         console.error(err.message);
+//     }
+// });
+
 //ADD NEW CLIMATE :: http://localhost:5000/api/insert/climate/here/?coordinate=(1,1)&season=summer&temp=100
 app.get("/api/insert/climate/here", async (req, res) => {
     try {

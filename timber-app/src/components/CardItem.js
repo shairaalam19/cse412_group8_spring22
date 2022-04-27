@@ -35,12 +35,14 @@ function CardItem(props) {
                     const accessibilityResults = await accessibilityData.json();
                     const  accessibilityStr = "pet friendly: " + accessibilityResults.accessibility[0].acc_petfriendly 
                             + ", paking cost: " + accessibilityResults.accessibility[0].acc_parkingcost;
-    
-                            console.log(accessibilityResults);
+
                     //get trail detail:
                     const trailDetails = await fetch(`http://localhost:5000/api/trail_details/?val=${trailName}`);
                     const tdResults = await trailDetails.json();
-                    const  trailStr = "length: " + tdResults.trails[0].trail_length + "mi, difficulty: " + tdResults.trails[0].trail_difficulty
+           
+                    const  trailStr = "length: " + tdResults.trails[0].trail_length 
+                            + "mi, difficulty: " + tdResults.trails[0].trail_difficulty
+                            + ", hours open: " + tdResults.trails[0].trail_hoursopen
                              + ", elevation gain: " + tdResults.trails[0].trail_elevationgain + "ft";
     
                     //var str = accessibilityStr + "\n" + trailStr + accessibilityStr;
