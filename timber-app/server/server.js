@@ -529,3 +529,46 @@ app.get("/api/insert/climate/here", async (req, res) => {
     }
 });
 
+//ADD NEW HAS_TRAIL 
+app.get("/api/insert/hastrail/here", async (req, res) => {
+    try {
+        const{ tname, dname }=req.query;
+        const result = await pool.query("INSERT INTO has_trail(trail_name,destination_name) VALUES ($1,$2) RETURNING *", [tname, dname]);
+            res.status(200).json({
+            status:"success",
+            data: result.rows[0]
+        });
+    }
+    catch (err) {
+        console.error(err.message);
+    }
+});
+
+// //ADD NEW IS_LOCATED #1: http://localhost:5000/api/insert/islocated/here/?dname=Grand Canyon&coordinate=(0,00)
+app.get("/api/insert/islocated/here", async (req, res) => {
+    try {
+        const{ dname, coordinate }=req.query;
+        const result = await pool.query("INSERT INTO is_located(destination_name,location_coordinate) VALUES ($1,$2) RETURNING *", [dname, coordinate]);
+            res.status(200).json({
+            status:"success",
+            data: result.rows[0]
+        });
+    }
+    catch (err) {
+        console.error(err.message);
+    }
+});
+
+
+// //ADD NEW IS_LOCATED #2
+// app.post("/api/insert/islocated/here", async (req, res) => {
+//     try {
+//         const result = await pool.query("INSERT INTO is_located(destination_name,location_coordinate) VALUES ($1,$2) RETURNING *", [req.body.destination_name, req.body.location_coordinate]);
+//         res.status(200).json({
+//             status:"success",
+//             favorite: result.rows[0],
+//          });
+//     } catch (err) {
+//         console.error(err.message);
+//     }
+// });
