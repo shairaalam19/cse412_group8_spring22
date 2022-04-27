@@ -50,65 +50,65 @@ CREATE TABLE trail (
 );
 
 INSERT INTO trail(trail_name,trail_length,trail_hoursOpen,trail_difficulty,trail_elevationGain) 
-VALUES ('Bright Angel Trail',12,NULL,'hard',4380);
+VALUES ('Bright Angel Trail',12,12,'hard',4380);
 INSERT INTO trail(trail_name,trail_length,trail_hoursOpen,trail_difficulty,trail_elevationGain) 
-VALUES ('Hermit Trail',17.5,NULL,'hard',5059);
+VALUES ('Hermit Trail',17.5,10,'hard',5059);
 INSERT INTO trail(trail_name,trail_length,trail_hoursOpen,trail_difficulty,trail_elevationGain) 
-VALUES ('Bright Angel Point Trail',0.5,NULL,'easy',144);
+VALUES ('Bright Angel Point Trail',0.5,14,'easy',144);
 INSERT INTO trail(trail_name,trail_length,trail_hoursOpen,trail_difficulty,trail_elevationGain) 
-VALUES ('Transept Trail',3,NULL,'medium',282);
+VALUES ('Transept Trail',3,12,'medium',282);
 INSERT INTO trail(trail_name,trail_length,trail_hoursOpen,trail_difficulty,trail_elevationGain) 
-VALUES ('Bridle Trail',1.2,NULL,'easy',255);
+VALUES ('Bridle Trail',1.2,14,'easy',255);
 INSERT INTO trail(trail_name,trail_length,trail_hoursOpen,trail_difficulty,trail_elevationGain) 
-VALUES ('Ken Patrick Trail',10,NULL,'hard',1236);
+VALUES ('Ken Patrick Trail',10,12,'hard',1236);
 INSERT INTO trail(trail_name,trail_length,trail_hoursOpen,trail_difficulty,trail_elevationGain) 
-VALUES ('Uncle Jim Trail',5,NULL,'easy',731);
+VALUES ('Uncle Jim Trail',5,10,'easy',731);
 INSERT INTO trail(trail_name,trail_length,trail_hoursOpen,trail_difficulty,trail_elevationGain) 
-VALUES ('Widforss Trail',10,NULL,'medium',1036);
+VALUES ('Widforss Trail',10,12,'medium',1036);
 INSERT INTO trail(trail_name,trail_length,trail_hoursOpen,trail_difficulty,trail_elevationGain) 
-VALUES ('Cape Royal Trail',0.6,NULL,'easy',65);
+VALUES ('Cape Royal Trail',0.6,14,'easy',65);
 INSERT INTO trail(trail_name,trail_length,trail_hoursOpen,trail_difficulty,trail_elevationGain) 
-VALUES ('Cliff Springs Trail',1,NULL,'easy',308);
+VALUES ('Cliff Springs Trail',1,14,'easy',308);
 INSERT INTO trail(trail_name,trail_length,trail_hoursOpen,trail_difficulty,trail_elevationGain) 
-VALUES ('Cape Final Trail',4,NULL,'easy',495);
+VALUES ('Cape Final Trail',4,14,'easy',495);
 INSERT INTO trail(trail_name,trail_length,trail_hoursOpen,trail_difficulty,trail_elevationGain) 
-VALUES ('Roosevelt Point Trail',0.2,NULL,'easy',13);
+VALUES ('Roosevelt Point Trail',0.2,14,'easy',13);
 INSERT INTO trail(trail_name,trail_length,trail_hoursOpen,trail_difficulty,trail_elevationGain) 
-VALUES ('Point Imperial Trail',4,NULL,'easy',472);
+VALUES ('Point Imperial Trail',4,14,'easy',472);
 INSERT INTO trail(trail_name,trail_length,trail_hoursOpen,trail_difficulty,trail_elevationGain) 
-VALUES ('Leonarad Monti Trail',0.9,NULL,'easy',232);
+VALUES ('Leonarad Monti Trail',0.9,14,'easy',232);
 INSERT INTO trail(trail_name,trail_length,trail_hoursOpen,trail_difficulty,trail_elevationGain) 
-VALUES ('Echo Canyon Trail',2.5,NULL,'hard',1420);
+VALUES ('Echo Canyon Trail',2.5,14,'hard',1420);
 INSERT INTO trail(trail_name,trail_length,trail_hoursOpen,trail_difficulty,trail_elevationGain) 
-VALUES ('Cholla Trail',2.6,NULL,'hard',1204);
+VALUES ('Cholla Trail',2.6,14,'hard',1204);
 INSERT INTO trail(trail_name,trail_length,trail_hoursOpen,trail_difficulty,trail_elevationGain)
-VALUES ('Kiwanis Trail',2.7,NULL,'medium',577);
+VALUES ('Kiwanis Trail',2.7,14,'medium',577);
 INSERT INTO trail(trail_name,trail_length,trail_hoursOpen,trail_difficulty,trail_elevationGain) 
-VALUES ('Telegraph Pass Trail',2.3,NULL,'medium',492);
+VALUES ('Telegraph Pass Trail',2.3,14,'medium',492);
 INSERT INTO trail(trail_name,trail_length,trail_hoursOpen,trail_difficulty,trail_elevationGain) 
-VALUES ('Pyramid Trail',6,NULL,'medium',1240);
+VALUES ('Pyramid Trail',6,14,'medium',1240);
 INSERT INTO trail(trail_name,trail_length,trail_hoursOpen,trail_difficulty,trail_elevationGain) 
-VALUES ('Midlife Crisis Trail and National Trail Loop',5.3,NULL,'hard',1046);
+VALUES ('Midlife Crisis Trail and National Trail Loop',5.3,12,'hard',1046);
 INSERT INTO trail(trail_name,trail_length,trail_hoursOpen,trail_difficulty,trail_elevationGain) 
-VALUES ('Marcos de Niza & Pima',1.7,NULL,'medium',331);
+VALUES ('Marcos de Niza & Pima',1.7,14,'medium',331);
 INSERT INTO trail(trail_name,trail_length,trail_hoursOpen,trail_difficulty,trail_elevationGain) 
-VALUES ('Trail of Ten Falls',7.4,NULL,'medium',1151);
+VALUES ('Trail of Ten Falls',7.4,12,'medium',1151);
 INSERT INTO trail(trail_name,trail_length,trail_hoursOpen,trail_difficulty,trail_elevationGain) 
-VALUES ('Angels Landing Trail',4.4,NULL,'hard',1604);
+VALUES ('Angels Landing Trail',4.4,12,'hard',1604);
 INSERT INTO trail(trail_name,trail_length,trail_hoursOpen,trail_difficulty,trail_elevationGain) 
-VALUES ('The Zion Narrows Riverside Walk',1.9,NULL,'easy',193);
+VALUES ('The Zion Narrows Riverside Walk',1.9,14,'easy',193);
 INSERT INTO trail(trail_name,trail_length,trail_hoursOpen,trail_difficulty,trail_elevationGain) 
-VALUES ('The Watchman Trail',3.1,NULL,'medium',636);
+VALUES ('The Watchman Trail',3.1,14,'medium',636);
 INSERT INTO trail(trail_name,trail_length,trail_hoursOpen,trail_difficulty,trail_elevationGain) 
-VALUES ('The Lighthouse Trail',5.8,NULL,'medium',521);
+VALUES ('The Lighthouse Trail',5.8,14,'medium',521);
 INSERT INTO trail(trail_name,trail_length,trail_hoursOpen,trail_difficulty,trail_elevationGain) 
-VALUES ('Rock Garden Trail',5,NULL,'medium',777);
+VALUES ('Rock Garden Trail',5,16,'medium',777);
 INSERT INTO trail(trail_name,trail_length,trail_hoursOpen,trail_difficulty,trail_elevationGain) 
-VALUES ('Enchanted Rock Summit Trail',1.3,NULL,'medium',419);
+VALUES ('Enchanted Rock Summit Trail',1.3,16,'medium',419);
 INSERT INTO trail(trail_name,trail_length,trail_hoursOpen,trail_difficulty,trail_elevationGain) 
-VALUES ('Ryan Mountain Trail',3,NULL,'medium',1069);
+VALUES ('Ryan Mountain Trail',3,14,'medium',1069);
 INSERT INTO trail(trail_name,trail_length,trail_hoursOpen,trail_difficulty,trail_elevationGain) 
-VALUES ('Upper Yosemite Falls Trail',7.6,NULL,'hard',3218);
+VALUES ('Upper Yosemite Falls Trail',7.6,14,'hard',3218);
 
 
 /* Acessibility Data */
