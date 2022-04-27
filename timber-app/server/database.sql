@@ -187,31 +187,32 @@ CREATE TABLE climate (
     location_coordinate text,
     climate_season text,
     climate_temp double precision,
+	climate_rainChance double precision, 
+	climate_humidity double precision, 
     PRIMARY KEY (climate_season, location_coordinate),
     FOREIGN KEY (location_coordinate) REFERENCES location ON DELETE CASCADE
 );
 
-INSERT INTO climate(location_coordinate,climate_season,climate_temp)
-VALUES ('36.0544° N, 112.1401° W','spring', 83.4);
-INSERT INTO climate(location_coordinate,climate_season,climate_temp)
-VALUES ('33.5151° N, 111.9619° W','spring', 90.2);
-INSERT INTO climate(location_coordinate,climate_season,climate_temp)
-VALUES ('33.4283° N, 111.9359° W','spring', 90.2);
-INSERT INTO climate(location_coordinate,climate_season,climate_temp)
-VALUES ('33.3335° N, 112.0622° W','spring', 89.5);
-INSERT INTO climate(location_coordinate,climate_season,climate_temp)
-VALUES ('37.2982° N, 113.0263° W','spring', 87.8);
-INSERT INTO climate(location_coordinate,climate_season,climate_temp)
-VALUES ('34.9373° N, 101.6589° W','spring', 88.9);
-INSERT INTO climate(location_coordinate,climate_season,climate_temp)
-VALUES ('30.5066° N, 98.8189° W','spring', 86.9);
-INSERT INTO climate(location_coordinate,climate_season,climate_temp)
-VALUES ('33.8734° N, 115.9010° W','spring', 93.4);
-INSERT INTO climate(location_coordinate,climate_season,climate_temp)
-VALUES ('37.8651° N, 119.5383° W','spring', 91.6);
-INSERT INTO climate(location_coordinate,climate_season,climate_temp)
-VALUES ('44.8652° N, 122.6262° W','spring', 88.3);
-
+INSERT INTO climate(location_coordinate,climate_season,climate_rainChance,climate_temp,climate_humidity) 
+VALUES ('36.0544° N, 112.1401° W','AZ',0,83.4,37);
+INSERT INTO climate(location_coordinate,climate_season,climate_rainChance,climate_temp,climate_humidity)
+ VALUES ('33.5151° N, 111.9619° W','AZ',0,90.2,37);
+INSERT INTO climate(location_coordinate,climate_season,climate_rainChance,climate_temp,climate_humidity) 
+VALUES ('33.4283° N, 111.9359° W','AZ',0,90.2,37);
+INSERT INTO climate(location_coordinate,climate_season,climate_rainChance,climate_temp,climate_humidity) 
+VALUES ('33.3335° N, 112.0622° W','AZ',0,89.5,37);
+INSERT INTO climate(location_coordinate,climate_season,climate_rainChance,climate_temp,climate_humidity) 
+VALUES ('37.2982° N, 113.0263° W','UT',10,87.8,30.51);
+INSERT INTO climate(location_coordinate,climate_season,climate_rainChance,climate_temp,climate_humidity) 
+VALUES ('34.9373° N, 101.6589° W','TX',10,88.9,64.9);
+INSERT INTO climate(location_coordinate,climate_season,climate_rainChance,climate_temp,climate_humidity) 
+VALUES ('30.5066° N, 98.8189° W','TX',0,86.9,50.5);
+INSERT INTO climate(location_coordinate,climate_season,climate_rainChance,climate_temp,climate_humidity) 
+VALUES ('33.8734° N, 115.9010° W','CA',0,93.4,85.66);
+INSERT INTO climate(location_coordinate,climate_season,climate_rainChance,climate_temp,climate_humidity) 
+VALUES ('37.8651° N, 119.5383° W','CA',20,91.6,88.62);
+INSERT INTO climate(location_coordinate,climate_season,climate_rainChance,climate_temp,climate_humidity) 
+VALUES ('44.8652° N, 122.6262° W','OR',5,88.3,40);
 
 /* Favorites Data */
 CREATE TABLE favorites (
