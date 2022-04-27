@@ -1,0 +1,525 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 14.2
+-- Dumped by pg_dump version 14.2
+
+-- Started on 2022-04-26 22:08:32 MST
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+SET row_security = off;
+
+SET default_tablespace = '';
+
+SET default_table_access_method = heap;
+
+--
+-- TOC entry 212 (class 1259 OID 16479)
+-- Name: accessibility; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.accessibility (
+    trail_name text NOT NULL,
+    acc_petfriendly text,
+    acc_parkingcost double precision
+);
+
+
+ALTER TABLE public.accessibility OWNER TO postgres;
+
+--
+-- TOC entry 217 (class 1259 OID 16729)
+-- Name: climate; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.climate (
+    location_coordinate text NOT NULL,
+    climate_season text NOT NULL,
+    climate_temp double precision,
+    climate_rainchance double precision,
+    climate_humidity double precision
+);
+
+
+ALTER TABLE public.climate OWNER TO postgres;
+
+--
+-- TOC entry 210 (class 1259 OID 16453)
+-- Name: destination; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.destination (
+    destination_name text NOT NULL
+);
+
+
+ALTER TABLE public.destination OWNER TO postgres;
+
+--
+-- TOC entry 216 (class 1259 OID 16651)
+-- Name: favorites; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.favorites (
+    hiker_userid integer NOT NULL,
+    destination_name text NOT NULL
+);
+
+
+ALTER TABLE public.favorites OWNER TO postgres;
+
+--
+-- TOC entry 215 (class 1259 OID 16617)
+-- Name: has_trail; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.has_trail (
+    trail_name text NOT NULL,
+    destination_name text
+);
+
+
+ALTER TABLE public.has_trail OWNER TO postgres;
+
+--
+-- TOC entry 209 (class 1259 OID 16446)
+-- Name: hiker; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.hiker (
+    hiker_userid integer NOT NULL,
+    hiker_username character varying(255),
+    hiker_password character varying(255),
+    hiker_state character varying(255)
+);
+
+
+ALTER TABLE public.hiker OWNER TO postgres;
+
+--
+-- TOC entry 214 (class 1259 OID 16600)
+-- Name: is_located; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.is_located (
+    destination_name text NOT NULL,
+    location_coordinate text
+);
+
+
+ALTER TABLE public.is_located OWNER TO postgres;
+
+--
+-- TOC entry 213 (class 1259 OID 16491)
+-- Name: location; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.location (
+    location_coordinate text NOT NULL,
+    location_state text,
+    location_city text,
+    location_zipcode integer,
+    location_address text
+);
+
+
+ALTER TABLE public.location OWNER TO postgres;
+
+--
+-- TOC entry 211 (class 1259 OID 16460)
+-- Name: trail; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.trail (
+    trail_name text NOT NULL,
+    trail_length double precision,
+    trail_hoursopen integer,
+    trail_difficulty text,
+    trail_elevationgain integer
+);
+
+
+ALTER TABLE public.trail OWNER TO postgres;
+
+--
+-- TOC entry 3630 (class 0 OID 16479)
+-- Dependencies: 212
+-- Data for Name: accessibility; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO public.accessibility (trail_name, acc_petfriendly, acc_parkingcost) VALUES ('Bright Angel Trail', 'no', 35);
+INSERT INTO public.accessibility (trail_name, acc_petfriendly, acc_parkingcost) VALUES ('Hermit Trail', 'no', 35);
+INSERT INTO public.accessibility (trail_name, acc_petfriendly, acc_parkingcost) VALUES ('Bright Angel Point Trail', 'no', 35);
+INSERT INTO public.accessibility (trail_name, acc_petfriendly, acc_parkingcost) VALUES ('Transept Trail', 'no', 35);
+INSERT INTO public.accessibility (trail_name, acc_petfriendly, acc_parkingcost) VALUES ('Bridle Trail', 'yes', 35);
+INSERT INTO public.accessibility (trail_name, acc_petfriendly, acc_parkingcost) VALUES ('Ken Patrick Trail', 'no', 35);
+INSERT INTO public.accessibility (trail_name, acc_petfriendly, acc_parkingcost) VALUES ('Uncle Jim Trail', 'no', 35);
+INSERT INTO public.accessibility (trail_name, acc_petfriendly, acc_parkingcost) VALUES ('Widforss Trail', 'no', 35);
+INSERT INTO public.accessibility (trail_name, acc_petfriendly, acc_parkingcost) VALUES ('Cape Royal Trail', 'no', 35);
+INSERT INTO public.accessibility (trail_name, acc_petfriendly, acc_parkingcost) VALUES ('Cliff Springs Trail', 'no', 35);
+INSERT INTO public.accessibility (trail_name, acc_petfriendly, acc_parkingcost) VALUES ('Cape Final Trail', 'no', 35);
+INSERT INTO public.accessibility (trail_name, acc_petfriendly, acc_parkingcost) VALUES ('Roosevelt Point Trail', 'no', 35);
+INSERT INTO public.accessibility (trail_name, acc_petfriendly, acc_parkingcost) VALUES ('Point Imperial Trail', 'no', 35);
+INSERT INTO public.accessibility (trail_name, acc_petfriendly, acc_parkingcost) VALUES ('Leonarad Monti Trail', 'yes', 2);
+INSERT INTO public.accessibility (trail_name, acc_petfriendly, acc_parkingcost) VALUES ('Echo Canyon Trail', 'no', 0);
+INSERT INTO public.accessibility (trail_name, acc_petfriendly, acc_parkingcost) VALUES ('Cholla Trail', 'no', 0);
+INSERT INTO public.accessibility (trail_name, acc_petfriendly, acc_parkingcost) VALUES ('Kiwanis Trail', 'yes', 0);
+INSERT INTO public.accessibility (trail_name, acc_petfriendly, acc_parkingcost) VALUES ('Telegraph Pass Trail', 'yes', 0);
+INSERT INTO public.accessibility (trail_name, acc_petfriendly, acc_parkingcost) VALUES ('Pyramid Trail', 'yes', 0);
+INSERT INTO public.accessibility (trail_name, acc_petfriendly, acc_parkingcost) VALUES ('Midlife Crisis Trail and National Trail Loop', 'no', 0);
+INSERT INTO public.accessibility (trail_name, acc_petfriendly, acc_parkingcost) VALUES ('Marcos de Niza & Pima', 'yes', 0);
+INSERT INTO public.accessibility (trail_name, acc_petfriendly, acc_parkingcost) VALUES ('Trail of Ten Falls', 'no', 5);
+INSERT INTO public.accessibility (trail_name, acc_petfriendly, acc_parkingcost) VALUES ('Angels Landing Trail', 'no', 35);
+INSERT INTO public.accessibility (trail_name, acc_petfriendly, acc_parkingcost) VALUES ('The Zion Narrows Riverside Walk', 'no', 35);
+INSERT INTO public.accessibility (trail_name, acc_petfriendly, acc_parkingcost) VALUES ('The Watchman Trail', 'no', 35);
+INSERT INTO public.accessibility (trail_name, acc_petfriendly, acc_parkingcost) VALUES ('The Lighthouse Trail', 'yes', 8);
+INSERT INTO public.accessibility (trail_name, acc_petfriendly, acc_parkingcost) VALUES ('Rock Garden Trail', 'yes', 8);
+INSERT INTO public.accessibility (trail_name, acc_petfriendly, acc_parkingcost) VALUES ('Enchanted Rock Summit Trail', 'no', 8);
+INSERT INTO public.accessibility (trail_name, acc_petfriendly, acc_parkingcost) VALUES ('Ryan Mountain Trail', 'no', 30);
+INSERT INTO public.accessibility (trail_name, acc_petfriendly, acc_parkingcost) VALUES ('Upper Yosemite Falls Trail', 'no', 35);
+
+
+--
+-- TOC entry 3635 (class 0 OID 16729)
+-- Dependencies: 217
+-- Data for Name: climate; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO public.climate (location_coordinate, climate_season, climate_temp, climate_rainchance, climate_humidity) VALUES ('37.2982° N, 113.0263° W', 'Spring', 87.8, 10, 30.51);
+INSERT INTO public.climate (location_coordinate, climate_season, climate_temp, climate_rainchance, climate_humidity) VALUES ('34.9373° N, 101.6589° W', 'Spring', 88.9, 10, 64.9);
+INSERT INTO public.climate (location_coordinate, climate_season, climate_temp, climate_rainchance, climate_humidity) VALUES ('37.8651° N, 119.5383° W', 'Spring', 91.6, 20, 88.62);
+INSERT INTO public.climate (location_coordinate, climate_season, climate_temp, climate_rainchance, climate_humidity) VALUES ('44.8652° N, 122.6262° W', 'Spring', 88.3, 5, 40);
+INSERT INTO public.climate (location_coordinate, climate_season, climate_temp, climate_rainchance, climate_humidity) VALUES ('36.0544° N, 112.1401° W', 'Spring', 83.4, 0, 37);
+INSERT INTO public.climate (location_coordinate, climate_season, climate_temp, climate_rainchance, climate_humidity) VALUES ('33.5151° N, 111.9619° W', 'Spring', 90.2, 0, 37);
+INSERT INTO public.climate (location_coordinate, climate_season, climate_temp, climate_rainchance, climate_humidity) VALUES ('33.4283° N, 111.9359° W', 'Spring', 90.2, 0, 37);
+INSERT INTO public.climate (location_coordinate, climate_season, climate_temp, climate_rainchance, climate_humidity) VALUES ('33.3335° N, 112.0622° W', 'Spring', 89.5, 0, 37);
+INSERT INTO public.climate (location_coordinate, climate_season, climate_temp, climate_rainchance, climate_humidity) VALUES ('30.5066° N, 98.8189° W', 'Spring', 86.9, 0, 50.5);
+INSERT INTO public.climate (location_coordinate, climate_season, climate_temp, climate_rainchance, climate_humidity) VALUES ('33.8734° N, 115.9010° W', 'Spring', 93.4, 0, 85.66);
+
+
+--
+-- TOC entry 3628 (class 0 OID 16453)
+-- Dependencies: 210
+-- Data for Name: destination; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO public.destination (destination_name) VALUES ('Grand Canyon');
+INSERT INTO public.destination (destination_name) VALUES ('South Mountain');
+INSERT INTO public.destination (destination_name) VALUES ('Zion National Park');
+INSERT INTO public.destination (destination_name) VALUES ('Palo Duro Canyon');
+INSERT INTO public.destination (destination_name) VALUES ('Enchanted Rock');
+INSERT INTO public.destination (destination_name) VALUES ('Joshua Tree National Park');
+INSERT INTO public.destination (destination_name) VALUES ('Yosemite National Park');
+INSERT INTO public.destination (destination_name) VALUES ('Silver Falls State Park');
+INSERT INTO public.destination (destination_name) VALUES ('A Mountain at Hayden Butte');
+INSERT INTO public.destination (destination_name) VALUES ('Camelback Mountain');
+
+
+--
+-- TOC entry 3634 (class 0 OID 16651)
+-- Dependencies: 216
+-- Data for Name: favorites; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO public.favorites (hiker_userid, destination_name) VALUES (1, 'Grand Canyon');
+INSERT INTO public.favorites (hiker_userid, destination_name) VALUES (2, 'Zion National Park');
+INSERT INTO public.favorites (hiker_userid, destination_name) VALUES (3, 'Grand Canyon');
+INSERT INTO public.favorites (hiker_userid, destination_name) VALUES (4, 'Zion National Park');
+INSERT INTO public.favorites (hiker_userid, destination_name) VALUES (4, 'Camelback Mountain');
+INSERT INTO public.favorites (hiker_userid, destination_name) VALUES (4, 'Grand Canyon');
+INSERT INTO public.favorites (hiker_userid, destination_name) VALUES (59756, 'South Mountain');
+
+
+--
+-- TOC entry 3633 (class 0 OID 16617)
+-- Dependencies: 215
+-- Data for Name: has_trail; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO public.has_trail (trail_name, destination_name) VALUES ('Bright Angel Trail', 'Grand Canyon');
+INSERT INTO public.has_trail (trail_name, destination_name) VALUES ('Hermit Trail', 'Grand Canyon');
+INSERT INTO public.has_trail (trail_name, destination_name) VALUES ('Bright Angel Point Trail', 'Grand Canyon');
+INSERT INTO public.has_trail (trail_name, destination_name) VALUES ('Transept Trail', 'Grand Canyon');
+INSERT INTO public.has_trail (trail_name, destination_name) VALUES ('Bridle Trail', 'Grand Canyon');
+INSERT INTO public.has_trail (trail_name, destination_name) VALUES ('Ken Patrick Trail', 'Grand Canyon');
+INSERT INTO public.has_trail (trail_name, destination_name) VALUES ('Uncle Jim Trail', 'Grand Canyon');
+INSERT INTO public.has_trail (trail_name, destination_name) VALUES ('Widforss Trail', 'Grand Canyon');
+INSERT INTO public.has_trail (trail_name, destination_name) VALUES ('Cape Royal Trail', 'Grand Canyon');
+INSERT INTO public.has_trail (trail_name, destination_name) VALUES ('Cliff Springs Trail', 'Grand Canyon');
+INSERT INTO public.has_trail (trail_name, destination_name) VALUES ('Cape Final Trail', 'Grand Canyon');
+INSERT INTO public.has_trail (trail_name, destination_name) VALUES ('Roosevelt Point Trail', 'Grand Canyon');
+INSERT INTO public.has_trail (trail_name, destination_name) VALUES ('Point Imperial Trail', 'Grand Canyon');
+INSERT INTO public.has_trail (trail_name, destination_name) VALUES ('Leonarad Monti Trail', 'A Mountain at Hayden Butte');
+INSERT INTO public.has_trail (trail_name, destination_name) VALUES ('Echo Canyon Trail', 'Camelback Mountain');
+INSERT INTO public.has_trail (trail_name, destination_name) VALUES ('Cholla Trail', 'Camelback Mountain');
+INSERT INTO public.has_trail (trail_name, destination_name) VALUES ('Kiwanis Trail', 'South Mountain');
+INSERT INTO public.has_trail (trail_name, destination_name) VALUES ('Telegraph Pass Trail', 'South Mountain');
+INSERT INTO public.has_trail (trail_name, destination_name) VALUES ('Pyramid Trail', 'South Mountain');
+INSERT INTO public.has_trail (trail_name, destination_name) VALUES ('Midlife Crisis Trail and National Trail Loop', 'South Mountain');
+INSERT INTO public.has_trail (trail_name, destination_name) VALUES ('Marcos de Niza & Pima', 'South Mountain');
+INSERT INTO public.has_trail (trail_name, destination_name) VALUES ('Trail of Ten Falls', 'Silver Falls State Park');
+INSERT INTO public.has_trail (trail_name, destination_name) VALUES ('Angels Landing Trail', 'Zion National Park');
+INSERT INTO public.has_trail (trail_name, destination_name) VALUES ('The Zion Narrows Riverside Walk', 'Zion National Park');
+INSERT INTO public.has_trail (trail_name, destination_name) VALUES ('The Watchman Trail', 'Zion National Park');
+INSERT INTO public.has_trail (trail_name, destination_name) VALUES ('The Lighthouse Trail', 'Palo Duro Canyon');
+INSERT INTO public.has_trail (trail_name, destination_name) VALUES ('Rock Garden Trail', 'Palo Duro Canyon');
+INSERT INTO public.has_trail (trail_name, destination_name) VALUES ('Enchanted Rock Summit Trail', 'Enchanted Rock');
+INSERT INTO public.has_trail (trail_name, destination_name) VALUES ('Ryan Mountain Trail', 'Joshua Tree National Park');
+INSERT INTO public.has_trail (trail_name, destination_name) VALUES ('Upper Yosemite Falls Trail', 'Yosemite National Park');
+
+
+--
+-- TOC entry 3627 (class 0 OID 16446)
+-- Dependencies: 209
+-- Data for Name: hiker; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO public.hiker (hiker_userid, hiker_username, hiker_password, hiker_state) VALUES (1, 'shairaalam', 'shairapw', 'tx');
+INSERT INTO public.hiker (hiker_userid, hiker_username, hiker_password, hiker_state) VALUES (2, 'geneaguas', 'genepw', 'ca');
+INSERT INTO public.hiker (hiker_userid, hiker_username, hiker_password, hiker_state) VALUES (3, 'arianabui', 'shairapw', 'az');
+INSERT INTO public.hiker (hiker_userid, hiker_username, hiker_password, hiker_state) VALUES (4, 'airasanagustin', 'airapw', 'fl');
+INSERT INTO public.hiker (hiker_userid, hiker_username, hiker_password, hiker_state) VALUES (59756, 'Lucy', 'Bui', 'TX');
+
+
+--
+-- TOC entry 3632 (class 0 OID 16600)
+-- Dependencies: 214
+-- Data for Name: is_located; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO public.is_located (destination_name, location_coordinate) VALUES ('Grand Canyon', '36.0544° N, 112.1401° W');
+INSERT INTO public.is_located (destination_name, location_coordinate) VALUES ('Camelback Mountain', '33.5151° N, 111.9619° W');
+INSERT INTO public.is_located (destination_name, location_coordinate) VALUES ('A Mountain at Hayden Butte', '33.4283° N, 111.9359° W');
+INSERT INTO public.is_located (destination_name, location_coordinate) VALUES ('South Mountain', '33.3335° N, 112.0622° W');
+INSERT INTO public.is_located (destination_name, location_coordinate) VALUES ('Zion National Park', '37.2982° N, 113.0263° W');
+INSERT INTO public.is_located (destination_name, location_coordinate) VALUES ('Palo Duro Canyon', '34.9373° N, 101.6589° W');
+INSERT INTO public.is_located (destination_name, location_coordinate) VALUES ('Enchanted Rock', '30.5066° N, 98.8189° W');
+INSERT INTO public.is_located (destination_name, location_coordinate) VALUES ('Joshua Tree National Park', '33.8734° N, 115.9010° W');
+INSERT INTO public.is_located (destination_name, location_coordinate) VALUES ('Yosemite National Park', '37.8651° N, 119.5383° W');
+INSERT INTO public.is_located (destination_name, location_coordinate) VALUES ('Silver Falls State Park', '44.8652° N, 122.6262° W');
+
+
+--
+-- TOC entry 3631 (class 0 OID 16491)
+-- Dependencies: 213
+-- Data for Name: location; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO public.location (location_coordinate, location_state, location_city, location_zipcode, location_address) VALUES ('36.0544° N, 112.1401° W', 'AZ', 'Grand Canyon', 86023, 'Grand Canyon National Park, Grand Canyon, AZ 86023');
+INSERT INTO public.location (location_coordinate, location_state, location_city, location_zipcode, location_address) VALUES ('33.5151° N, 111.9619° W', 'AZ', 'Phoneix', 85018, '4925 E McDonald Dr, Phoenix, AZ 85018');
+INSERT INTO public.location (location_coordinate, location_state, location_city, location_zipcode, location_address) VALUES ('33.4283° N, 111.9359° W', 'AZ', 'Tempe', 85291, 'E Rio Salado Pkwy & S Mill Ave, Tempe, AZ 85281');
+INSERT INTO public.location (location_coordinate, location_state, location_city, location_zipcode, location_address) VALUES ('33.3335° N, 112.0622° W', 'AZ', 'Phoneix', 85042, '10919 S Central Ave, Phoenix, AZ 85042');
+INSERT INTO public.location (location_coordinate, location_state, location_city, location_zipcode, location_address) VALUES ('37.2982° N, 113.0263° W', 'UT', 'Springdale', 84767, '1 Zion Park Blvd, Springdale, UT 84767');
+INSERT INTO public.location (location_coordinate, location_state, location_city, location_zipcode, location_address) VALUES ('34.9373° N, 101.6589° W', 'TX', 'Canyon', 79015, '11450 State Hwy Park Rd 5, Canyon, TX 79015');
+INSERT INTO public.location (location_coordinate, location_state, location_city, location_zipcode, location_address) VALUES ('30.5066° N, 98.8189° W', 'TX', 'Fredericksburg', 78624, '16710 Ranch Rd 965, Fredericksburg TX, 78624');
+INSERT INTO public.location (location_coordinate, location_state, location_city, location_zipcode, location_address) VALUES ('33.8734° N, 115.9010° W', 'CA', 'Twentynine Palms', 92277, '74485 National Park Drive, Twentynine Palms, CA 92277');
+INSERT INTO public.location (location_coordinate, location_state, location_city, location_zipcode, location_address) VALUES ('37.8651° N, 119.5383° W', 'CA', 'Yosemite National Park', 95389, 'Tioga Rd Hwy 120 & Hwy 140 Yosemite National Park, CA 95389');
+INSERT INTO public.location (location_coordinate, location_state, location_city, location_zipcode, location_address) VALUES ('44.8652° N, 122.6262° W', 'OR', 'Sublimity', 97385, '20024 Silver Falls Hwy SE, Sublimity, OR 97385');
+
+
+--
+-- TOC entry 3629 (class 0 OID 16460)
+-- Dependencies: 211
+-- Data for Name: trail; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO public.trail (trail_name, trail_length, trail_hoursopen, trail_difficulty, trail_elevationgain) VALUES ('Bright Angel Trail', 12, 12, 'hard', 4380);
+INSERT INTO public.trail (trail_name, trail_length, trail_hoursopen, trail_difficulty, trail_elevationgain) VALUES ('Hermit Trail', 17.5, 10, 'hard', 5059);
+INSERT INTO public.trail (trail_name, trail_length, trail_hoursopen, trail_difficulty, trail_elevationgain) VALUES ('Bright Angel Point Trail', 0.5, 14, 'easy', 144);
+INSERT INTO public.trail (trail_name, trail_length, trail_hoursopen, trail_difficulty, trail_elevationgain) VALUES ('Transept Trail', 3, 12, 'medium', 282);
+INSERT INTO public.trail (trail_name, trail_length, trail_hoursopen, trail_difficulty, trail_elevationgain) VALUES ('Bridle Trail', 1.2, 14, 'easy', 255);
+INSERT INTO public.trail (trail_name, trail_length, trail_hoursopen, trail_difficulty, trail_elevationgain) VALUES ('Ken Patrick Trail', 10, 12, 'hard', 1236);
+INSERT INTO public.trail (trail_name, trail_length, trail_hoursopen, trail_difficulty, trail_elevationgain) VALUES ('Uncle Jim Trail', 5, 10, 'easy', 731);
+INSERT INTO public.trail (trail_name, trail_length, trail_hoursopen, trail_difficulty, trail_elevationgain) VALUES ('Widforss Trail', 10, 12, 'medium', 1036);
+INSERT INTO public.trail (trail_name, trail_length, trail_hoursopen, trail_difficulty, trail_elevationgain) VALUES ('Cape Royal Trail', 0.6, 14, 'easy', 65);
+INSERT INTO public.trail (trail_name, trail_length, trail_hoursopen, trail_difficulty, trail_elevationgain) VALUES ('Cliff Springs Trail', 1, 14, 'easy', 308);
+INSERT INTO public.trail (trail_name, trail_length, trail_hoursopen, trail_difficulty, trail_elevationgain) VALUES ('Cape Final Trail', 4, 12, 'easy', 495);
+INSERT INTO public.trail (trail_name, trail_length, trail_hoursopen, trail_difficulty, trail_elevationgain) VALUES ('Roosevelt Point Trail', 0.2, 14, 'easy', 13);
+INSERT INTO public.trail (trail_name, trail_length, trail_hoursopen, trail_difficulty, trail_elevationgain) VALUES ('Point Imperial Trail', 4, 14, 'easy', 472);
+INSERT INTO public.trail (trail_name, trail_length, trail_hoursopen, trail_difficulty, trail_elevationgain) VALUES ('Leonarad Monti Trail', 0.9, 14, 'easy', 232);
+INSERT INTO public.trail (trail_name, trail_length, trail_hoursopen, trail_difficulty, trail_elevationgain) VALUES ('Echo Canyon Trail', 2.5, 14, 'hard', 1420);
+INSERT INTO public.trail (trail_name, trail_length, trail_hoursopen, trail_difficulty, trail_elevationgain) VALUES ('Cholla Trail', 2.6, 14, 'hard', 1204);
+INSERT INTO public.trail (trail_name, trail_length, trail_hoursopen, trail_difficulty, trail_elevationgain) VALUES ('Kiwanis Trail', 2.7, 14, 'medium', 577);
+INSERT INTO public.trail (trail_name, trail_length, trail_hoursopen, trail_difficulty, trail_elevationgain) VALUES ('Telegraph Pass Trail', 2.3, 14, 'medium', 492);
+INSERT INTO public.trail (trail_name, trail_length, trail_hoursopen, trail_difficulty, trail_elevationgain) VALUES ('Pyramid Trail', 6, 14, 'medium', 1240);
+INSERT INTO public.trail (trail_name, trail_length, trail_hoursopen, trail_difficulty, trail_elevationgain) VALUES ('Midlife Crisis Trail and National Trail Loop', 5.3, 12, 'hard', 1046);
+INSERT INTO public.trail (trail_name, trail_length, trail_hoursopen, trail_difficulty, trail_elevationgain) VALUES ('Marcos de Niza & Pima', 1.7, 14, 'medium', 331);
+INSERT INTO public.trail (trail_name, trail_length, trail_hoursopen, trail_difficulty, trail_elevationgain) VALUES ('Trail of Ten Falls', 7.4, 12, 'medium', 1151);
+INSERT INTO public.trail (trail_name, trail_length, trail_hoursopen, trail_difficulty, trail_elevationgain) VALUES ('Angels Landing Trail', 4.4, 12, 'hard', 1604);
+INSERT INTO public.trail (trail_name, trail_length, trail_hoursopen, trail_difficulty, trail_elevationgain) VALUES ('The Zion Narrows Riverside Walk', 1.9, 14, 'easy', 193);
+INSERT INTO public.trail (trail_name, trail_length, trail_hoursopen, trail_difficulty, trail_elevationgain) VALUES ('The Watchman Trail', 3.1, 14, 'medium', 636);
+INSERT INTO public.trail (trail_name, trail_length, trail_hoursopen, trail_difficulty, trail_elevationgain) VALUES ('The Lighthouse Trail', 5.8, 14, 'medium', 521);
+INSERT INTO public.trail (trail_name, trail_length, trail_hoursopen, trail_difficulty, trail_elevationgain) VALUES ('Rock Garden Trail', 5, 16, 'medium', 777);
+INSERT INTO public.trail (trail_name, trail_length, trail_hoursopen, trail_difficulty, trail_elevationgain) VALUES ('Enchanted Rock Summit Trail', 1.3, 16, 'medium', 419);
+INSERT INTO public.trail (trail_name, trail_length, trail_hoursopen, trail_difficulty, trail_elevationgain) VALUES ('Ryan Mountain Trail', 3, 14, 'medium', 1069);
+INSERT INTO public.trail (trail_name, trail_length, trail_hoursopen, trail_difficulty, trail_elevationgain) VALUES ('Upper Yosemite Falls Trail', 7.6, 14, 'hard', 3218);
+
+
+--
+-- TOC entry 3469 (class 2606 OID 16485)
+-- Name: accessibility accessibility_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.accessibility
+    ADD CONSTRAINT accessibility_pkey PRIMARY KEY (trail_name);
+
+
+--
+-- TOC entry 3479 (class 2606 OID 16735)
+-- Name: climate climate_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.climate
+    ADD CONSTRAINT climate_pkey PRIMARY KEY (climate_season, location_coordinate);
+
+
+--
+-- TOC entry 3465 (class 2606 OID 16459)
+-- Name: destination destination_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.destination
+    ADD CONSTRAINT destination_pkey PRIMARY KEY (destination_name);
+
+
+--
+-- TOC entry 3477 (class 2606 OID 16657)
+-- Name: favorites favorites_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.favorites
+    ADD CONSTRAINT favorites_pkey PRIMARY KEY (hiker_userid, destination_name);
+
+
+--
+-- TOC entry 3475 (class 2606 OID 16623)
+-- Name: has_trail has_trail_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.has_trail
+    ADD CONSTRAINT has_trail_pkey PRIMARY KEY (trail_name);
+
+
+--
+-- TOC entry 3463 (class 2606 OID 16452)
+-- Name: hiker hiker_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.hiker
+    ADD CONSTRAINT hiker_pkey PRIMARY KEY (hiker_userid);
+
+
+--
+-- TOC entry 3473 (class 2606 OID 16606)
+-- Name: is_located is_located_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.is_located
+    ADD CONSTRAINT is_located_pkey PRIMARY KEY (destination_name);
+
+
+--
+-- TOC entry 3471 (class 2606 OID 16497)
+-- Name: location location_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.location
+    ADD CONSTRAINT location_pkey PRIMARY KEY (location_coordinate);
+
+
+--
+-- TOC entry 3467 (class 2606 OID 16466)
+-- Name: trail trail_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.trail
+    ADD CONSTRAINT trail_pkey PRIMARY KEY (trail_name);
+
+
+--
+-- TOC entry 3480 (class 2606 OID 16486)
+-- Name: accessibility accessibility_trail_name_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.accessibility
+    ADD CONSTRAINT accessibility_trail_name_fkey FOREIGN KEY (trail_name) REFERENCES public.trail(trail_name) ON DELETE CASCADE;
+
+
+--
+-- TOC entry 3487 (class 2606 OID 16736)
+-- Name: climate climate_location_coordinate_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.climate
+    ADD CONSTRAINT climate_location_coordinate_fkey FOREIGN KEY (location_coordinate) REFERENCES public.location(location_coordinate) ON DELETE CASCADE;
+
+
+--
+-- TOC entry 3486 (class 2606 OID 16663)
+-- Name: favorites favorites_destination_name_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.favorites
+    ADD CONSTRAINT favorites_destination_name_fkey FOREIGN KEY (destination_name) REFERENCES public.destination(destination_name) ON DELETE CASCADE;
+
+
+--
+-- TOC entry 3485 (class 2606 OID 16658)
+-- Name: favorites favorites_hiker_userid_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.favorites
+    ADD CONSTRAINT favorites_hiker_userid_fkey FOREIGN KEY (hiker_userid) REFERENCES public.hiker(hiker_userid) ON DELETE CASCADE;
+
+
+--
+-- TOC entry 3484 (class 2606 OID 16629)
+-- Name: has_trail has_trail_destination_name_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.has_trail
+    ADD CONSTRAINT has_trail_destination_name_fkey FOREIGN KEY (destination_name) REFERENCES public.destination(destination_name) ON DELETE CASCADE;
+
+
+--
+-- TOC entry 3483 (class 2606 OID 16624)
+-- Name: has_trail has_trail_trail_name_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.has_trail
+    ADD CONSTRAINT has_trail_trail_name_fkey FOREIGN KEY (trail_name) REFERENCES public.trail(trail_name) ON DELETE CASCADE;
+
+
+--
+-- TOC entry 3481 (class 2606 OID 16607)
+-- Name: is_located is_located_destination_name_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.is_located
+    ADD CONSTRAINT is_located_destination_name_fkey FOREIGN KEY (destination_name) REFERENCES public.destination(destination_name) ON DELETE CASCADE;
+
+
+--
+-- TOC entry 3482 (class 2606 OID 16612)
+-- Name: is_located is_located_location_coordinate_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.is_located
+    ADD CONSTRAINT is_located_location_coordinate_fkey FOREIGN KEY (location_coordinate) REFERENCES public.location(location_coordinate) ON DELETE CASCADE;
+
+
+-- Completed on 2022-04-26 22:08:33 MST
+
+--
+-- PostgreSQL database dump complete
+--
+
