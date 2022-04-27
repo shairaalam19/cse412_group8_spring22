@@ -34,13 +34,14 @@ function CardItem(props) {
                     const accessibilityData = await fetch(`http://localhost:5000/api/trails/accessibility/?val=${trailName}`);
                     const accessibilityResults = await accessibilityData.json();
                     const  accessibilityStr = "pet friendly: " + accessibilityResults.accessibility[0].acc_petfriendly 
-                            + "\tpaking cost: " + accessibilityResults.accessibility[0].acc_parkingcost;
+                            + ", paking cost: " + accessibilityResults.accessibility[0].acc_parkingcost;
     
+                            console.log(accessibilityResults);
                     //get trail detail:
                     const trailDetails = await fetch(`http://localhost:5000/api/trail_details/?val=${trailName}`);
                     const tdResults = await trailDetails.json();
-                    const  trailStr = "length: " + tdResults.trails[0].trail_length + "mi\tdifficulty: " + tdResults.trails[0].trail_difficulty
-                             + "\televation gain: " + tdResults.trails[0].trail_elevationgain + "ft";
+                    const  trailStr = "length: " + tdResults.trails[0].trail_length + "mi, difficulty: " + tdResults.trails[0].trail_difficulty
+                             + ", elevation gain: " + tdResults.trails[0].trail_elevationgain + "ft";
     
                     //var str = accessibilityStr + "\n" + trailStr + accessibilityStr;
                     trailArray.push(
@@ -155,7 +156,6 @@ function CardItem(props) {
                     <Link className="cards__item__info" to={props.path} >
                         <h5 className="cards__item__title">{props.title}</h5>
                         <h4 className="cards__item__trails">{props.trails}</h4>
-                        {/* <h5 className="cards__item__accessibility">{props.accessibility}</h5> */}
                         <h5 className="cards__item__location">{props.location}</h5>
                         <h5 className="cards__item__climate">{props.climate}</h5>
                     </Link>

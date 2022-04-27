@@ -32,7 +32,7 @@ export function Destination_Cards(props) {
           trails={trails_string}
           // accessibility={destination.accessibility}
           location={"Address: " + destination.location}
-          climate={"Climate: " + destination.climate}
+          climate={destination.climate}
           label="Adventure"
           path="/destinations"
         />
@@ -86,8 +86,14 @@ export function Destination_Cards(props) {
           const location_coordinate = locationResults.location[0].location_coordinate;
           const climate = await fetch(`http://localhost:5000/api/locations/climate/?val=${location_coordinate}`);
           const climateResults = await climate.json();
-          const climateString = climateResults.climate[0].climate_temp;
+          const climateString = "Climate For Time of Year: " + climateResults.climate[0].climate_season
+              + ", Avg Temp: " + climateResults.climate[0].climate_temp
+              + ", Avg Chance of Rain: " + climateResults.climate[0].climate_rainchance
+              + ", Avg Humidity: " + climateResults.climate[0].climate_humidity;
           
+
+              console.log(climateResults);
+              console.log(climateResults.climate[0].climate_rainchance);
           //get trails associated with destination
           var trailArray = [];
           for(var j = 0; j < trailResults.trails.length; j++){
@@ -133,7 +139,11 @@ export function Destination_Cards(props) {
           const location_coordinate = locationResults.location[0].location_coordinate;
           const climate = await fetch(`http://localhost:5000/api/locations/climate/?val=${location_coordinate}`);
           const climateResults = await climate.json();
-          const climateString = climateResults.climate[0].climate_temp;
+
+          const climateString = "Climate For Time of Year: " + climateResults.climate[0].climate_season
+              + ", Avg Temp: " + climateResults.climate[0].climate_temp
+              + ", Avg Chance of Rain: " + climateResults.climate[0].climate_rainChance
+              + ", Avg Humidity: " + climateResults.climate[0].climate_humidity;
 
           //get trails associated with destination
           var trailArray = [];
@@ -179,7 +189,10 @@ export function Destination_Cards(props) {
           const location_coordinate = locationResults.location[0].location_coordinate;
           const climate = await fetch(`http://localhost:5000/api/locations/climate/?val=${location_coordinate}`);
           const climateResults = await climate.json();
-          const climateString = climateResults.climate[0].climate_temp;
+          const climateString = "Climate For Time of Year: " + climateResults.climate[0].climate_season
+              + ", Avg Temp: " + climateResults.climate[0].climate_temp
+              + ", Avg Chance of Rain: " + climateResults.climate[0].climate_rainChance
+              + ", Avg Humidity: " + climateResults.climate[0].climate_humidity;
 
           //get trails associated with destination
           var trailArray = [];

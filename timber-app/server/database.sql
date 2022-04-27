@@ -194,25 +194,25 @@ CREATE TABLE climate (
 );
 
 INSERT INTO climate(location_coordinate,climate_season,climate_rainChance,climate_temp,climate_humidity) 
-VALUES ('36.0544° N, 112.1401° W','AZ',0,83.4,37);
+VALUES ('36.0544° N, 112.1401° W','Spring',0,83.4,37);
 INSERT INTO climate(location_coordinate,climate_season,climate_rainChance,climate_temp,climate_humidity)
- VALUES ('33.5151° N, 111.9619° W','AZ',0,90.2,37);
+ VALUES ('33.5151° N, 111.9619° W','Spring',0,90.2,37);
 INSERT INTO climate(location_coordinate,climate_season,climate_rainChance,climate_temp,climate_humidity) 
-VALUES ('33.4283° N, 111.9359° W','AZ',0,90.2,37);
+VALUES ('33.4283° N, 111.9359° W','Spring',0,90.2,37);
 INSERT INTO climate(location_coordinate,climate_season,climate_rainChance,climate_temp,climate_humidity) 
-VALUES ('33.3335° N, 112.0622° W','AZ',0,89.5,37);
+VALUES ('33.3335° N, 112.0622° W','Spring',0,89.5,37);
 INSERT INTO climate(location_coordinate,climate_season,climate_rainChance,climate_temp,climate_humidity) 
-VALUES ('37.2982° N, 113.0263° W','UT',10,87.8,30.51);
+VALUES ('37.2982° N, 113.0263° W','Spring',10,87.8,30.51);
 INSERT INTO climate(location_coordinate,climate_season,climate_rainChance,climate_temp,climate_humidity) 
-VALUES ('34.9373° N, 101.6589° W','TX',10,88.9,64.9);
+VALUES ('34.9373° N, 101.6589° W','Spring',10,88.9,64.9);
 INSERT INTO climate(location_coordinate,climate_season,climate_rainChance,climate_temp,climate_humidity) 
-VALUES ('30.5066° N, 98.8189° W','TX',0,86.9,50.5);
+VALUES ('30.5066° N, 98.8189° W','Spring',0,86.9,50.5);
 INSERT INTO climate(location_coordinate,climate_season,climate_rainChance,climate_temp,climate_humidity) 
-VALUES ('33.8734° N, 115.9010° W','CA',0,93.4,85.66);
+VALUES ('33.8734° N, 115.9010° W','Spring',0,93.4,85.66);
 INSERT INTO climate(location_coordinate,climate_season,climate_rainChance,climate_temp,climate_humidity) 
-VALUES ('37.8651° N, 119.5383° W','CA',20,91.6,88.62);
+VALUES ('37.8651° N, 119.5383° W','Spring',20,91.6,88.62);
 INSERT INTO climate(location_coordinate,climate_season,climate_rainChance,climate_temp,climate_humidity) 
-VALUES ('44.8652° N, 122.6262° W','OR',5,88.3,40);
+VALUES ('44.8652° N, 122.6262° W','Spring',5,88.3,40);
 
 /* Favorites Data */
 CREATE TABLE favorites (
