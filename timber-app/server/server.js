@@ -236,6 +236,22 @@ app.get("/api/trails/search/", async (req, res)=> {
     }
 });
 
+//find all trail details that belong to a destination name (input)
+//url: http://localhost:5000/api/trail_details/?val=gr
+app.get("/api/trail_details/", async (req, res)=> {
+    try{
+        const { val } = req.query;
+        const result = await pool.query("SELECT * FROM trail WHERE trail.trail_name = $1", [val])
+        res.status(200).json({
+            status:"success",
+            size: result.rows.length, //total array size
+            trails: result.rows
+        });
+    }catch(err){
+        console.error(err.message);
+    }
+});
+
 //find all trails filtered by length , difficulty, and elevation gain
 //url: http://localhost:5000/api/trails/search/filter/?minLength=0&maxLength=9999&difficulty=easy&minGain=0&maxGain=9999&orderBy=trail_name
 app.get("/api/trails/search/filterall", async (req, res)=> {
