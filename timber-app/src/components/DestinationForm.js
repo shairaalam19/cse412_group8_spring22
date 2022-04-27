@@ -201,6 +201,19 @@ export function DestinationForm() {
             addLocation();
 
 
+			//add location
+			const addIsLocated = async () => {
+                try{
+					const results = await fetch(`http://localhost:5000/api/insert/islocated/here/?dname=${destinationName}&coordinate=${coordinate}`);
+                	const parseResults = await results.json();
+                  	console.log(parseResults);
+                }catch(err){
+                  console.log(err);
+                }
+              }
+			addIsLocated();
+
+
 			//add climate
 			const addClimate = async () => {
                 try{
